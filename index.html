@@ -4,26 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./src/Css/input.css">
     <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
-<body>
+<body class="bg-[#060B27]">
     
-    <div class="h-[100dvh] text-xl font-bold flex flex-col items-center justify-center gap-1" >
-        <img src="./src/assets/maintenance.gif" class="h-32 rounded-md " />
-        <p id="loding">
-            Under maintenance ...
-        </p>
-    </div>
-
-    <script>
-        let dot = '.';
-        let index = 0 ;
-        setInterval(() => {
-            index<=3 ? dot+="." : (dot = '' , index = 0) ;
-            index++;
-            document.getElementById("loding").innerHTML = "Under maintenance " + dot ;
-        }, 500);
-    </script>
+    <header class="text-sm border-b-[1px] border-gray-600">
+        <div class="container grid grid-cols-[auto,1fr,auto] items-center py-4 px-3 text-gray-200">
+            <h2 class="text-[#6158CA]">AmineFC</h2>
+            <ul class="flex justify-center gap-6">
+                <li>Home</li>
+                <li>Player</li>
+                <li>Setting</li>
+            </ul>
+            <div class="flex items-center gap-5">
+                <button class="text-[#6158CA]  bg-white rounded-md px-3 py-1">Login</button>
+                <button class="bg-[#6158CA]  rounded-md px-3 py-1">Sign Up</button>
+                <div class="bg-[#262244] rounded-full border-[1px] border-[#6158CA] flex justify-center items-center h-8 w-8" >
+                    <i class="fa-regular fa-moon"></i>
+                </div>
+            </div>
+        </div>
+       
+    </header>
+    <h1>Make Your Dream Team Socore</h1>
+    <script src="https://kit.fontawesome.com/ff84f079ef.js" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -2,6 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+
+.lc{
+    background: radial-gradient(ellipse 150px 150px at 0% 200px , #3a357357 , transparent);
+    background-color: #060B27;
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+}
+.rc{
+    background: radial-gradient(ellipse 200px 200px at 100% 180px  , #3a357357 , transparent);
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+}
+
 @media (min-width: 768px) {
     .container {
       width: 738px;

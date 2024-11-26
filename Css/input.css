@@ -47,7 +47,7 @@ body{
 @media (max-width: 768px) {
   .tt {
     transform:
-    scale(0.5) ;
+    scale(0.5);
   }
 }
 

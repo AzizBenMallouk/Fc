@@ -26,22 +26,24 @@ const formations = [
         { pn : 11 ,x: 530, y: 395 , post: 'ST' ,player : -1},
     ]
 ]
+const playerUsed = []
 const DefaultPositions = () =>{
     const formationPicked = localStorage.getItem("fp") ?? 0 ;
     formations[formationPicked].forEach((item, index) => {
         const element = document.createElement('div');
-        element.classList.add("transition-all")
+        element.style.transition = "all .5s,transform 1s"
+        element.style.transform = "rotateY(0deg)"
         element.classList.add("absolute")
         element.style.left = `${item.y}px`
         element.style.bottom = `${item.x}px`
         element.setAttribute("id" ,`img${index + 1}` )
-        element.setAttribute("onclick" ,`PickPlayer(${formationPicked} , ${item.x} )` )
+        element.setAttribute("onclick" ,`PickPlayer(${formationPicked},${item.pn},"${item.post}")` )
         element.classList.add('element');
-        element.innerHTML = `<img src="./Assets/image.png"  class="h-40 " alt="">
+        element.innerHTML = `<img id="imgcover${item.pn}" src="./Assets/image.png"  class="h-40 " alt="">
                     ${item.player==-1 && 
                     (`
-                        <div class="absolute inset-0 flex justify-center items-center">
-                            <div class="relative text-gray-400 text-2xl">
+                        <div id="addplayericon${item.pn}" class="absolute inset-0 flex justify-center items-center">
+                            <div class="relative text-gray-400 text-2xl cursor-pointer">
                                 <i class="fa-solid fa-plus"></i>
                             </div>    
                        
@@ -51,13 +53,13 @@ const DefaultPositions = () =>{
                         <p id="post${index}" class="px-3 text-white bg-gray-800 -translate-y-2 rounded-md w-auto">${item.post}</p>
                     </div>
                     <div class="absolute left-[18px] top-8 flex flex-col items-center">
-                        <h2 class="m-0 p-0 font-bold text-ms"></h2>
-                        <span class="text-[8px]"></span>
-                        <img class="w-5 "  />
+                        <h2 id="ratingtext${item.pn}" class="m-0 p-0 font-bold text-ms"></h2>
+                        <span id="posttext${item.pn}" class="text-[8px]"></span>
+                        <img id="imgflag${item.pn}" class="w-5 "  />
                     </div>
-                    <img class="absolute left-10 w-16 top-6"  />
+                    <img id="imgplayer${item.pn}" class="absolute left-10 w-16 top-6"  />
                     <div class="absolute left-8 right-8 top-24 font-bold text-xs flex justify-center items-center text-center">
-                        <h2 class=""></h2>
+                        <h2 id="playername${item.pn}" class=""></h2>
                     </div>
         ` ;
         canvas.appendChild(element);
@@ -111,6 +113,76 @@ function OpenFormationMenu(){
     }
 }
 
-function PickPlayer(formationPicked , x){
-    alert(""+formationPicked)
+function PickPlayer(formationPicked , pn , postVar){
+    
+    fetch('../Data/players.json')
+    .then(res=>res.json())
+    .then(data=> {
+        console.log(postVar)
+        AddPlaperPanel(data ,formationPicked , pn , postVar)
+    })
+}
+function ClosePanlePlayers(){
+    document.getElementById("playerspanel").innerHTML = ``;
+}
+function AddPlaperPanel(data ,formationPicked , pn , post){
+    console.log(post);
+    let PlayerCards = ``;
+
+    data && data.forEach((item , i)=>{
+        // const newCard = document.createElement('div');
+        let FindPlayer= data.find((row)=>row.id==item.id);
+        item.position.includes(""+post) ? PlayerCards += `
+        <div class='relative cursor-pointer' onclick='PickedPlayer(${JSON.stringify(FindPlayer).replace(/'/g, "")},${formationPicked},${pn},${item.id})'>
+        <img src="./Assets/badge-white.png"  class="h-44 " alt="">
+       
+        <div class="absolute left-[18px] top-8 flex flex-col items-center">
+            <h2 class="m-0 p-0 font-bold text-ms">${item.rating}</h2>
+            <span class="text-[8px]">${item.position}</span>
+            <img class="w-5 " src="${item.flag}"   />
+        </div>
+        <img class="absolute left-10 w-16 top-6" src="${item.photo}" />
+        <div class="absolute left-8 right-8 top-24 font-bold text-xs flex justify-center items-center text-center">
+            <h2 class="">${item.name}</h2>
+        </div>
+        </div>
+        
+        ` : ''
+    })
+
+    document.getElementById("playerspanel").innerHTML = `
+        <div class="border-[#3C4053] rounded-md border-2 w-full py-5 px-6">
+            <div class="flex justify-between">
+            <h3 class=" text-gray-100">Players</h3>
+                <i class="fa-solid fa-xmark text-white cursor-pointer" onclick="ClosePanlePlayers()"></i>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                ${PlayerCards.length>0 ? PlayerCards : `<div class="flex gap-2 ite px-5 py-2 w-full mt-10 border-2 border-gray-700 text-gray-200">
+                <i class="fa-regular fa-futbol"></i><span>0 player found</span>
+                </div>`}
+                </div>
+        </div>
+    `;
+}
+
+function PickedPlayer(playerObject , formationPicked , pn ,id){
+    formations[formationPicked].forEach((itm ,i)=>{
+        if(itm.pn==pn) {
+            itm.player = id ;
+        }
+    })
+    const Card = document.getElementById(`img${pn}`);
+    document.getElementById(`ratingtext${pn}`).innerHTML = playerObject?.rating;
+    document.getElementById(`playername${pn}`).innerHTML = playerObject?.name;
+    document.getElementById(`posttext${pn}`).innerHTML = playerObject?.position;
+    const addplayericon = document.getElementById(`addplayericon${pn}`);
+    addplayericon.style.display = 'none';
+    const allimgs = document.querySelectorAll(`#img${pn} img`);
+    document.getElementById(`imgcover${pn}`).setAttribute("src" , playerObject?.cover )
+    document.getElementById(`imgflag${pn}`).setAttribute("src" , playerObject?.flag )
+    document.getElementById(`imgplayer${pn}`).setAttribute("src" , playerObject?.photo )
+    Card.style.transform = "rotateY(0deg) scale(1.1)"
+    setTimeout(()=>{
+        Card.style.transform = "rotateY(0deg) scale(1)"
+    },500)
 }

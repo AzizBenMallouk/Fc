@@ -33,7 +33,8 @@ body{
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  transform: rotateX(40deg);
+  transform:
+   rotateX(40deg);
   transition: transform 1s, opacity 0.5s; 
 
 }

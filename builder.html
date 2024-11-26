@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="./Css/input.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <header class="text-sm border-b-[1px] border-gray-600">
+        <div class="container grid grid-cols-[auto,1fr,auto] items-center py-4 px-3 text-gray-200">
+            <h2 class="text-[#6158CA]">AmineFC</h2>
+            <ul class="flex justify-center gap-6">
+                <li>Home</li>
+                <li>Player</li>
+                <li>Setting</li>
+            </ul>
+            <div class="flex items-center gap-5">
+                <button class="text-[#6158CA]  bg-white rounded-md px-3 py-1">Login</button>
+                <button class="bg-[#6158CA]  rounded-md px-3 py-1">Sign Up</button>
+                <div class="bg-[#262244] rounded-full border-[1px] border-[#6158CA] flex justify-center items-center h-8 w-8" >
+                    <i class="fa-regular fa-moon"></i>
+                </div>
+            </div>
+        </div>
+       
+    </header>
+    <section>
+        <div class="container">
+            <div class="">
+                <p>Home > Builder</p> 
+                <h3>EA FC 25 Tactics & Formations</h3>
+                <p>Build Custom Tactics & Formations</p> 
+            </div>
+        </div>
+      
+    </section>
+    <section>
+        <div class="container h-full grid grid-cols-[1024px,1fr] ">
+            <div class="tt flex justify-center">
+                <div class="terain"></div>
+                <div id="canvas" class="absolute h-full w-full"></div>
+            </div>
+            <div class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo aliquid deleniti fugiat debitis iure modi dolor eaque earum recusandae illum ipsam, corporis cupiditate? Cumque laudantium, dignissimos laborum iure, odit minus quia eaque quasi beatae perferendis nesciunt assumenda, aperiam molestiae. Non ipsa amet accusamus sint nulla blanditiis ad? Ad, provident exercitationem!</div>
+        </div>
+    </section>
+    <div class="">
+        test
+    </div>
+    <footer>
+        footer
+    </footer>
+    <script>
+
+    const data = [
+        { x: 50, y: 460  },
+        { x: 150, y: 260 },
+        { x: 250, y: 50 },
+        { x: 400, y: 200 },
+        { x: 320, y: 450 },
+
+        ];
+        data.forEach((item, index) => {
+        const element = document.createElement('div');
+        element.classList.add('element');
+        element.innerHTML = `<img 
+        id="img${index + 1}" 
+        src="./Assets/badge_gold.webp" 
+        class="h-32 absolute left-[${item.y}px] bottom-[${item.x}px] transition-all" alt="" srcset="">` ;
+     
+        canvas.appendChild(element);
+    });
+        // const img1 = document.getElementById("img1");
+        // const img2 = document.getElementById("img2");
+        // const img3 = document.getElementById("img3");
+        // let switch_ = false ;
+        // setInterval(() => {
+        //     if(switch_){
+        //         img2.classList.remove('left-60')
+        //         img2.classList.remove('bottom-24')
+        //         img2.classList.add('left-80')
+        //         img2.classList.add('bottom-60')
+        //         switch_ = false
+        //     }else {
+        //         img2.classList.add('left-60')
+        //         img2.classList.add('bottom-24')
+        //         img2.classList.remove('left-80')
+        //         img2.classList.remove('bottom-60')
+        //         switch_ = true ;
+        //     }
+
+        // }, 2000);
+    </script>
+    <script src="https://kit.fontawesome.com/ff84f079ef.js" crossorigin="anonymous"></script>
+</body>
+</html>

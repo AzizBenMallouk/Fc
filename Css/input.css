@@ -3,9 +3,12 @@
 @tailwind utilities;
 
 
+body{
+  background-color: #060B27;
+  height: 100dvh;
+}
 .lc{
     background: radial-gradient(ellipse 150px 150px at 0% 200px , #3a357357 , transparent);
-    background-color: #060B27;
     position: absolute;
     inset: 0;
     z-index: -1;
@@ -16,6 +19,28 @@
     inset: 0;
     z-index: -1;
 }
+
+.tt{
+  perspective: 1000px;
+
+}
+.terain {
+  width: 892px;
+  height: 731px;
+  opacity: 0.3;
+  filter: grayscale(1);
+  background-image: url('../Assets/1_NofXaUwXm5lzEAnPXjWY1w.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transform: rotateX(40deg);
+  transition: transform 1s, opacity 0.5s; 
+
+}
+/* .terain:hover{
+  transform: rotateX(200deg) ;
+
+} */
 
 @media (min-width: 768px) {
     .container {

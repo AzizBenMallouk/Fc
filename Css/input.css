@@ -8,13 +8,13 @@ body{
   height: 100dvh;
 }
 .lc{
-    background: radial-gradient(ellipse 150px 150px at 0% 200px , #3a357357 , transparent);
+    background: radial-gradient(ellipse 550px 550px at 0% 200px , #3a357357 , transparent);
     position: absolute;
     inset: 0;
     z-index: -1;
 }
 .rc{
-    background: radial-gradient(ellipse 200px 200px at 100% 180px  , #3a357357 , transparent);
+    background: radial-gradient(ellipse 300px 200px at 100% 180px  , #3a357357 , transparent);
     position: absolute;
     inset: 0;
     z-index: -1;
@@ -22,7 +22,10 @@ body{
 
 .tt{
   perspective: 1000px;
-
+  .tt {
+    transform:
+    scale(0.5) ;
+  }
 }
 .terain {
   width: 892px;
@@ -34,19 +37,25 @@ body{
   background-repeat: no-repeat;
   background-position: center;
   transform:
-   rotateX(40deg);
+   rotateX(40deg) ;
   transition: transform 1s, opacity 0.5s; 
-
 }
 /* .terain:hover{
   transform: rotateX(200deg) ;
 
 } */
+@media (max-width: 768px) {
+  .tt {
+    transform:
+    scale(0.5) ;
+  }
+}
 
 @media (min-width: 768px) {
     .container {
       width: 738px;
     }
+  
   }
   /* tablet */
   @media (min-width: 992px) {

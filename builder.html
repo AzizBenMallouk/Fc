@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="./Css/input.css">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body>
     <header class="text-sm border-b-[1px] border-gray-600">
         <div class="container grid grid-cols-[auto,1fr,auto] items-center py-4 px-3 text-gray-200">
@@ -19,24 +21,32 @@
             <div class="flex items-center gap-5">
                 <button class="text-[#6158CA]  bg-white rounded-md px-3 py-1">Login</button>
                 <button class="bg-[#6158CA]  rounded-md px-3 py-1">Sign Up</button>
-                <div class="bg-[#262244] rounded-full border-[1px] border-[#6158CA] flex justify-center items-center h-8 w-8" >
+                <div
+                    class="bg-[#262244] rounded-full border-[1px] border-[#6158CA] flex justify-center items-center h-8 w-8">
                     <i class="fa-regular fa-moon"></i>
                 </div>
             </div>
         </div>
-       
+
     </header>
+    <div class="lc"></div>
+    <div class="rc"></div>
     <section>
         <div class="container px-5">
             <div class="text-gray-400 pt-6">
-                <p>Home > Builder</p> 
+                <p>Home > Builder</p>
                 <h3>EA FC 25 Tactics & Formations</h3>
-                <p>Build Custom Tactics & Formations</p> 
+                <p>Build Custom Tactics & Formations</p>
+            </div>
+            <div class="flex">
+                <div class="relative">
+                    
+                </div>
             </div>
         </div>
     </section>
     <section>
-        <div class="container h-full grid grid-cols-[auto,1fr] ">
+        <div class="container h-full grid grid-cols-[auto,1fr] max-sm:grid-cols-[1fr] ">
             <div class="">
                 <div class="tt flex justify-center relative">
                     <div class="terain"></div>
@@ -44,120 +54,45 @@
                 </div>
                 <div class="mt-2 flex flex-row-reverse">
                     <div class="">
-                        <img 
-                        src="./Assets/badge_gold.webp"
-                        class="h-32 transition-all"
-                        alt="" srcset="">
+                        <img src="./Assets/badge_gold.webp" class="h-32 transition-all" alt="" srcset="">
                         <div class="flex justify-center">
-                            <p id="post${index}" class="px-3 text-white bg-gray-800 -translate-y-2 rounded-md w-auto">GK</p>
+                            <p id="post${index}" class="px-3 text-white bg-gray-800 -translate-y-2 rounded-md w-auto">GK
+                            </p>
                         </div>
                     </div>
                     <div class="">
-                        <img 
-                        src="./Assets/badge_gold.webp"
-                        class="h-32 transition-all"
-                        alt="" srcset="">
+                        <img src="./Assets/badge_gold.webp" class="h-32 transition-all" alt="" srcset="">
                         <div class="flex justify-center">
-                            <p id="post${index}" class="px-3 text-white bg-gray-800 -translate-y-2 rounded-md w-auto">GK</p>
+                            <p id="post${index}" class="px-3 text-white bg-gray-800 -translate-y-2 rounded-md w-auto">GK
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
-           
-            <div class="w-full flex flex-col gap-2 pr-10">
-                <div class="border-[#3C4053] rounded-md border-2 w-full py-5 px-10">
-                    <h3 class=" text-gray-100">Formations</h3>
-                    <select name="" id="formationtaktik" 
-                    class="mt-2 py-2 w-full text-gray-400 bg-transparent rounded-md border-2 border-gray-600"
-                    onchange="onchangeformation()">
-                        <option value="0">4-4-2</option>
-                        <option value="1">4-3-3</option>
-                        <option value="1">3-5-2</option>
-                        <option value="1">3-4-3</option>
-                        <option value="1">5-3-1</option>
-                    </select>
-                </div>
-                <div class="border-[#3C4053] rounded-md border-2 w-full py-5 px-10">
-                    <div class="flex justify-between">
-                        <h3 class=" text-gray-100">Players</h3>
-                        <h3 class=" text-gray-100">x</h3>
+
+            <div class="w-full flex flex-col gap-2 px-6">
+                <div id="formations" ipOpened="false"
+                    class="border-[#3C4053] rounded-md border-2 w-full py-5 px-10 transition-all">
+                    <div class="flex justify-between items-center" onclick="OpenFormationMenu()">
+                        <h3 class=" text-gray-100 select-none cursor-pointer">Formations</h3>
+                        <i id="formationicon"
+                            class="fa-solid fa-chevron-down text-white cursor-pointer transition-all"></i>
                     </div>
-                    <div class="flex flex-wrap">
-                        <div class="">
-                            <img 
-                            src="./Assets/badge_gold.webp"
-                            class="h-32 transition-all"
-                            alt="" srcset="">
-                            <div class="flex justify-center">
-                                <p id="post${index}" class="px-3 text-white bg-gray-800 -translate-y-2 rounded-md w-auto">GK</p>
-                            </div>
+                    <div id="formationcontent"></div>
+                </div>
+                <div id="playerspanel">
+                    <div class="border-[#3C4053] rounded-md border-2 w-full py-5 px-6">
+                        <div class="flex justify-between">
+                            <h3 class=" text-gray-100">Players</h3>
+                            <i class="fa-solid fa-xmark text-white"></i>
                         </div>
-                        <div class="">
-                            <img 
-                            src="./Assets/badge_gold.webp"
-                            class="h-32 transition-all"
-                            alt="" srcset="">
-                            <div class="flex justify-center">
-                                <p id="post${index}" class="px-3 text-white bg-gray-800 -translate-y-2 rounded-md w-auto">GK</p>
-                            </div>
+                        <div class="flex flex-wrap">
+
+
                         </div>
-                        <div class="">
-                            <img 
-                            src="./Assets/badge_gold.webp"
-                            class="h-32 transition-all"
-                            alt="" srcset="">
-                            <div class="flex justify-center">
-                                <p id="post${index}" class="px-3 text-white bg-gray-800 -translate-y-2 rounded-md w-auto">GK</p>
-                            </div>
-                        </div>
-                        <div class="">
-                            <img 
-                            src="./Assets/badge_gold.webp"
-                            class="h-32 transition-all"
-                            alt="" srcset="">
-                            <div class="flex justify-center">
-                                <p id="post${index}" class="px-3 text-white bg-gray-800 -translate-y-2 rounded-md w-auto">GK</p>
-                            </div>
-                        </div>
-                        <div class="">
-                            <img 
-                            src="./Assets/badge_gold.webp"
-                            class="h-32 transition-all"
-                            alt="" srcset="">
-                            <div class="flex justify-center">
-                                <p id="post${index}" class="px-3 text-white bg-gray-800 -translate-y-2 rounded-md w-auto">GK</p>
-                            </div>
-                        </div>
-                        <div class="">
-                            <img 
-                            src="./Assets/badge_gold.webp"
-                            class="h-32 transition-all"
-                            alt="" srcset="">
-                            <div class="flex justify-center">
-                                <p id="post${index}" class="px-3 text-white bg-gray-800 -translate-y-2 rounded-md w-auto">GK</p>
-                            </div>
-                        </div>
-                        <div class="">
-                            <img 
-                            src="./Assets/badge_gold.webp"
-                            class="h-32 transition-all"
-                            alt="" srcset="">
-                            <div class="flex justify-center">
-                                <p id="post${index}" class="px-3 text-white bg-gray-800 -translate-y-2 rounded-md w-auto">GK</p>
-                            </div>
-                        </div>
-                        <div class="">
-                            <img 
-                            src="./Assets/badge_gold.webp"
-                            class="h-32 transition-all"
-                            alt="" srcset="">
-                            <div class="flex justify-center">
-                                <p id="post${index}" class="px-3 text-white bg-gray-800 -translate-y-2 rounded-md w-auto">GK</p>
-                            </div>
-                        </div>
-                        
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -173,4 +108,5 @@
     </script>
     <script src="https://kit.fontawesome.com/ff84f079ef.js" crossorigin="anonymous"></script>
 </body>
+
 </html>

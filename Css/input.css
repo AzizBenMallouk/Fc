@@ -22,10 +22,7 @@ body{
 
 .tt{
   perspective: 1000px;
-  .tt {
-    transform:
-    scale(0.5) ;
-  }
+  
 }
 .terain {
   width: 892px;
@@ -44,11 +41,24 @@ body{
   transform: rotateX(200deg) ;
 
 } */
-@media (max-width: 768px) {
-  .tt {
+.containersplited{
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+.cardplayer:hover{
+  backdrop-filter: drop-shadow(4px 4px 10px blue);
+
+}
+
+@media (max-width: 1200px) {
+  /* .containersplited{
+    grid-template-columns: 1fr;
+    /* transform: scale(0.5); 
+  } */
+  /* .tt {
     transform:
-    scale(0.5);
-  }
+    scale(0.5) ;
+  } */
 }
 
 @media (min-width: 768px) {
@@ -73,4 +83,4 @@ body{
   
   .container{
     margin-inline: auto;
-    }
+}

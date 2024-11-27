@@ -31,7 +31,7 @@
     </header>
     <div class="lc"></div>
     <div class="rc"></div>
-    <section>
+    <!-- <section>
         <div class="container px-5">
             <div class="text-gray-400 pt-6">
                 <p>Home > Builder</p>
@@ -40,51 +40,57 @@
             </div>
             <div class="flex">
                 <div class="relative">
-                    
+                
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <section>
-        <div class="container h-full grid grid-cols-[auto,1fr] max-sm:grid-cols-[1fr] ">
-            <div class="">
-                <div class="tt flex justify-center relative">
-                    <div class="terain"></div>
-                    <div id="canvas" class="absolute h-full w-full"></div>
-                </div>
-                <div class="mt-2 flex flex-row-reverse">
-                    <div class="">
-                        <img src="./Assets/badge_gold.webp" class="h-32 transition-all" alt="" srcset="">
-                        <div class="flex justify-center">
-                            <p id="post${index}" class="px-3 text-white bg-gray-800 -translate-y-2 rounded-md w-auto">GK
-                            </p>
+        <div class="container">
+            <div class="grid grid-cols-[1fr,500px]">
+                <div class="h-full grid containersplited">
+                    <div class="tt flex justify-center relative">
+                        <div class="terain"></div>
+                        <div id="canvas" class="absolute h-full w-full"></div>
+                    </div>
+                    <div class="hidden mt-2 flex flex-row-reverse">
+                        <div class="">
+                            <img src="./Assets/badge_gold.webp" class="h-32 transition-all" alt="" srcset="">
+                            <div class="flex justify-center">
+                                <p id="post${index}" class="px-3 text-white bg-gray-800 -translate-y-2 rounded-md w-auto">GK
+                                </p>
+                            </div>
+                        </div>
+                        <div class="">
+                            <img src="./Assets/badge_gold.webp" class="h-32 transition-all" alt="" srcset="">
+                            <div class="flex justify-center">
+                                <p id="post${index}" class="px-3 text-white bg-gray-800 -translate-y-2 rounded-md w-auto">GK
+                                </p>
+                            </div>
                         </div>
                     </div>
-                    <div class="">
-                        <img src="./Assets/badge_gold.webp" class="h-32 transition-all" alt="" srcset="">
-                        <div class="flex justify-center">
-                            <p id="post${index}" class="px-3 text-white bg-gray-800 -translate-y-2 rounded-md w-auto">GK
-                            </p>
+                </div>
+    
+                <div class="w-full flex flex-col gap-2 px-6 ">
+                    <div id="formations" ipOpened="false"
+                        class="border-[#3C4053] rounded-md border-2 w-full py-5 px-10 transition-all">
+                        <div class="flex justify-between items-center" onclick="OpenFormationMenu()">
+                            <h3 class=" text-gray-100 select-none cursor-pointer">Formations</h3>
+                            <i id="formationicon"
+                                class="fa-solid fa-chevron-down text-white cursor-pointer transition-all"></i>
                         </div>
+                        <div id="formationcontent"></div>
                     </div>
+                    <div id="playerinfo" class="overflow-y-auto">
+                        
+                    </div>
+                    <div id="playerspanel">
+                        
+                    </div>
+    
                 </div>
             </div>
-
-            <div class="w-full flex flex-col gap-2 px-6">
-                <div id="formations" ipOpened="false"
-                    class="border-[#3C4053] rounded-md border-2 w-full py-5 px-10 transition-all">
-                    <div class="flex justify-between items-center" onclick="OpenFormationMenu()">
-                        <h3 class=" text-gray-100 select-none cursor-pointer">Formations</h3>
-                        <i id="formationicon"
-                            class="fa-solid fa-chevron-down text-white cursor-pointer transition-all"></i>
-                    </div>
-                    <div id="formationcontent"></div>
-                </div>
-                <div id="playerspanel">
-                    
-                </div>
-
-            </div>
+            
         </div>
     </section>
     <div class="">

@@ -4,8 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Players</title>
-    <link rel="stylesheet" href="./Css/input.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="
+    https://cdn.jsdelivr.net/npm/tom-select@2.4.1/dist/css/tom-select.default.min.css
+    " rel="stylesheet">
+    <link rel="stylesheet" href="./Css/input.css">
+
 </head>
 <body>
     <header class="text-sm border-b-[1px] border-gray-600">
@@ -27,9 +31,140 @@
         </div>
 
     </header>
-    Players
+    <div class="lc"></div>
+    <div class="rc"></div>
+    <section class="mx-8">
+        <div class="container h-[100%]">
+            <div class="h-[80vh]  border-[1px] border-gray-400 mt-12  rounded-md py-3 ">
+                <div class="px-8 pb-4 border-b-[1px] flex justify-between items-center ">
+                    <h2 class="text-xl text-white " border-gray-400>Players</h2>
+                    <div class="cursor-pointer text-gray-50 rounded-md bg-[#6158CA] px-3 py-2 flex justify-center items-center gap-2">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>Add Player</span>
+                    </div> 
+                </div>
+                <div class="grid grid-cols-[1fr,550px] h-[100%] w-full ">
+                    <div id="playerslist" class="flex flex-wrap h-[100%] justify-center">
+                        
+                    </div>
+                    <form action="">
+                        <div class="flex justify-center py-3 h-full">
+                            <div class="w-[500px]">
+                                <div class="w-full border-[1px] border-dashed rounded-md flex flex-col px-5 py-3 items-center">
+                                    <i class="fa-solid fa-image text-blue-400 text-3xl"></i>
+                                    <h4 class="text-gray-50 font-semibold text-md">Drag & Drop</h4>
+                                    <div class="flex gap-2 flex items-center">
+                                        <span class="text-white">or</span>
+                                        <input class="my-2 text-gray-50"
+                                        accept="image/png, image/jpg, image/jpeg"
+                                        type="file" id="fileInput" />
+                                    </div>
+                                    <h6 class="mt-1 text-gray-300 text-[0.6rem]">Supports : JPEG , JPG, PNG</h6>
+                                </div>
+    
+                                <div class="relative grid gap-[10px] mt-2 text-white">
+                                    <div class="grid grid-cols-[80px,1fr] items-center">
+                                        <span>Name : </span>
+                                        <input id="txtplayerName" class="px-2 py-1 bg-transparent border-[1px] border-gray-400 rounded-md" type="text" />
+                                    </div>
+                                   <div class="grid grid-cols-2 gap-4">
+                                        <div class="grid grid-cols-[80px,1fr] items-center">
+                                            <span>Flag : </span>
+                                                <select id="FlagCombo" placeholder="Select an option...">
+                                               </select>
+                                        </div>
+                                        <div class="grid grid-cols-[80px,1fr] items-center">
+                                            <span>Club : </span>
+                                            
+                                              <select id="ClubCombo" placeholder="Select an option...">
+                                              </select>
 
+                                        </div>
+                                   </div>
+                                   <div class="grid grid-cols-2 gap-4">
+                                    <div class="grid grid-cols-[80px,1fr] items-center">
+                                        <span>Cover : </span>
+
+                                        <select id="CoverCombo" placeholder="Select an option...">
+                                        </select>
+                                    </div>
+                                    <div class="grid grid-cols-[80px,1fr] items-center">
+                                        <span>Position : </span>
+                                        <select id="ComboplayerPosition" class="h-full px-2 text-[#3E3E3E] border-[#B8B8B8] border-[1px] rounded-sm" placeholder="Select an option...">
+                                            <option value="GK" >GK</option>
+                                            <option value="LB" >LB</option>
+                                            <option value="RB" >RB</option>
+                                            <option value="CB" >CB</option>
+                                            <option value="CM" >CM</option>
+                                            <option value="DM" >DM</option>
+                                            <option value="LW" >LW</option>
+                                            <option value="RW" >RW</option>
+                                            <option value="ST" >ST</option>
+                                          </select>
+                                    </div>
+                                    </div>
+                                    <div class=" py-2 grid gap-4">
+                                        <div class="grid grid-cols-2 gap-4">
+                                            <div class="grid grid-cols-[100px,1fr]">
+                                                <span id="RatingDisplay">Rating (10) : </span>
+                                                <input id="RangePlayerRating" type="range" min="10" max="99" value="10">  
+                                            </div>
+                                            <div class="grid grid-cols-[100px,1fr]">
+                                                <span>Pace : </span>
+                                                <input id="RangePlayerPace"  type="range" min="10" max="99" value="10">
+                                            </div>
+                                        </div>
+                                        <div class="grid grid-cols-2 gap-4">
+                                            <div class="grid grid-cols-[100px,1fr]">
+                                                <span>Shooting : </span>
+                                                <input  id="RangePlayerShooting" type="range"  min="10" max="99" value="10">
+                                            </div>
+                                            <div class="grid grid-cols-[100px,1fr]">
+                                                <span>Passing : </span>
+                                                <input id="RangePlayerPassing" type="range" min="10" max="99" value="10">
+                                            </div>
+                                        </div>
+                                        <div class="grid grid-cols-2 gap-4">
+                                            <div class="grid grid-cols-[100px,1fr]">
+                                                <span>Dribbling : </span>
+                                                <input id="RangePlayerDribbling" type="range" min="10" max="99" value="10">
+                                            </div>
+                                            <div class="grid grid-cols-[100px,1fr]">
+                                                <span>Defending : </span>
+                                                <input id="RangePlayerDefending" type="range"  min="10" max="99" value="10">
+    
+                                            </div>
+                                        </div>
+                                        <div class="grid grid-cols-2 gap-4 items-center">
+                                            <div class="grid grid-cols-[100px,1fr]">
+                                                <span>Physical : </span>
+                                                <input  id="RangePlayerPhysical" type="range" min="10" max="99" value="10">
+                                            </div>
+                                            <button type="submit" onclick="AddPlayer(event)" class="bottom-0 flex justify-normal items-center right-0 h-14 w-14 text-sm py-1 rounded-full text-white bg-[#6158CA] >
+                                                <i class="fa-solid fa-floppy-disk"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                   
+
+                                </div>
+                                <!-- <img style="mix-blend-mode: multiply;" src="https://w7.pngwing.com/pngs/895/199/png-transparent-spider-man-heroes-download-with-transparent-background-free-thumbnail.png" /> -->
+                            </div>
+                            
+                        </div>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
     <script src="https://kit.fontawesome.com/ff84f079ef.js" crossorigin="anonymous"></script>
+    
+    <script src="
+    https://cdn.jsdelivr.net/npm/tom-select@2.4.1/dist/js/tom-select.complete.min.js
+    "></script> 
+    <script src="./Js/players.js"></script>
 
 </body>
 </html>

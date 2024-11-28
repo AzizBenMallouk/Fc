@@ -95,3 +95,10 @@ body{
   .container{
     margin-inline: auto;
 }
+
+.custom-option img {
+  border-radius: 50%;
+}
+.custom-option span {
+  font-size: 12px;
+}

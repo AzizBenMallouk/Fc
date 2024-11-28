@@ -98,6 +98,7 @@ function onchangeformation(){
     const tt = document.getElementById("formationtaktik").value;
     tt && localStorage.setItem("fp",tt) 
     tt && (formationPicked = Number(tt));
+    
     formations.forEach((taktik,i)=>{
         i!=formationPicked && taktik.forEach((item,p)=>{
             item.player = formations[formationPicked][p].player;
@@ -146,7 +147,7 @@ function PickPlayer(pn,isOnterain){
         AddPlaperPanel(data ,
              pn ,
              `${isOnterain == false ? "" :Array.from(formations[formationPicked][pn-1].post).slice(-2).join().replace(/,/g,"")}`,isOnterain)
-    })
+    })//we can also use includes string but bina n3adbo rassna o safi
 }
 function ClosePanlePlayers(){
     document.getElementById("playerspanel").innerHTML = ``;

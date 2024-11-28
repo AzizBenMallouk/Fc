@@ -56,56 +56,17 @@
                   
                     <div class=" mt-2 ">
                         <div class="border-b-[1px] border-gray-400 flex justify-end">
-                            <span class="text-gray-400">2/6</span>
+                            <span id="subnumber" class="text-gray-400">0/5</span>
                         </div>
-                        <div class="flex flex-row-reverse">
-                            <div class="relative element" id="img9" style="transition: 0.5s;filter: none;"><img id="imgcover9" src="https://fv2-2.files.fm/thumb_show.php?i=7sbzk7mgem&amp;view&amp;v=1&amp;PHPSESSID=fac250debc6a4f58f3a3c2b3c8c890dfbed6c0fb" class="h-40 " alt="">
-                
-                  
-           
-                
-                                <div onclick="PickPlayer(9)" id="addplayericon9" class="absolute inset-0 flex justify-center items-center" style="display: none;">
+                        <div id="subpanel" class="flex flex-row-reverse">
+                            <div class="relative element" id="cardtoadd" style="transition: 0.5s;filter: none;"><img id="imgcover9" src="./Assets/image.png" class="h-40 " alt="">
+                                <div onclick="AddSubs()" class="absolute inset-0 flex justify-center items-center">
                                     <div class="relative text-gray-400 text-2xl cursor-pointer">
                                         <i class="fa-solid fa-plus" aria-hidden="true"></i>
                                     </div>    
-                               
                                 </div>
                                 
-                            <div class="flex justify-center">
-                                <p id="post8" class="px-3 text-white bg-gray-800 -translate-y-2 rounded-md w-auto">LW</p>
-                            </div>
-                            <div class="absolute left-[18px] top-8 flex flex-col items-center">
-                                <h2 id="ratingtext9" class="m-0 p-0 font-bold text-ms text-[#FFD972]">90</h2>
-                                <span id="posttext9" class="text-[8px] text-[#FFD972]">LW</span>
-                                <img id="imgflag9" class="w-5 " alt="" src="https://cdn.sofifa.net/flags/br.png">
-                            </div>
-                            <img id="imgplayer9" class="absolute left-10 w-16 top-6" alt="" src="https://cdn.sofifa.net/players/190/871/25_120.png">
-                            <div class="absolute left-4 right-4 top-[88px]  text-[0.6rem] flex flex-col justify-center items-center text-center">
-                                <h2 class="font-bold text-[#FFD972]" id="playername9">Neymar Jr</h2>
-                                
-                                <div class="flex flex-col items-center">
-                                    <span id="playerclub9" class="text-[0.5rem] text-[#FFD972]">Al-Hilal</span>
-                                    <img id="imgclub9" class="w-4" alt="" src="https://cdn.sofifa.net/meta/team/7011/120.png">
-                                </div>
-                                
-                            </div>
                             
-                
-                            <div class="absolute z-20 cursor-pointer right-0 bottom-10 bg-gray-600 text-white rounded-full h-5 w-5 flex justify-center items-center shadow-sm">
-                                <span class="font-sans">i</span>
-                            </div>
-                            </div>
-                            <div class="relative element" id="img9" style="transition: 0.5s;filter: none;"><img id="imgcover9" src="./Assets/image.png" class="h-40 " alt="">
-                                <div onclick="PickPlayer(9)" id="addplayericon9" class="absolute inset-0 flex justify-center items-center">
-                                    <div class="relative text-gray-400 text-2xl cursor-pointer">
-                                        <i class="fa-solid fa-plus" aria-hidden="true"></i>
-                                    </div>    
-                               
-                                </div>
-                                
-                            <div class="flex justify-center">
-                                <p id="post8" class="px-3 text-white bg-gray-800 -translate-y-2 rounded-md w-auto">LW</p>
-                            </div>
                             <div class="absolute left-[18px] top-8 flex flex-col items-center">
                                 <h2 id="ratingtext9" class="m-0 p-0 font-bold text-ms"></h2>
                                 <span id="posttext9" class="text-[8px]"></span>
@@ -142,7 +103,7 @@
                     <div id="playerinfo" >
                         
                     </div>
-                    <div id="playerspanel" class="overflow-y-auto">
+                    <div id="playerspanel" class="border-[#3C4053] rounded-md border-2 overflow-y-auto">
                         
                     </div>
     

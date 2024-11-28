@@ -26,6 +26,8 @@ const formations = [
         { pn : 11 ,x: 530, y: 395 , post: 'ST' ,player : -1},
     ]
 ]
+const Subplayer =[
+]
 let formationPicked = 0;
 const DefaultPositions = () =>{
    formationPicked = localStorage.getItem("fp") ?? 0 ;
@@ -41,17 +43,17 @@ const DefaultPositions = () =>{
             element.style.filter = 'none';
             
         })
-        element.style.left = `${item.y}px`
+        element.style.left = `${item.y}px` ;
+        element.setAttribute("onclick" , `PickPlayer(${item.pn},true)`)
         element.style.bottom = `${item.x}px`
         element.setAttribute("id" ,`img${index + 1}` )
         element.classList.add('element');
-        element.innerHTML = `<img id="imgcover${item.pn}" src="./Assets/image.png"  class="h-40 " alt="">
-                
-                  
-           
-                ${item.player == -1 && 
+        element.innerHTML = `
+        
+                <img id="imgcover${item.pn}" src="./Assets/image.png"  class="h-40 " alt="">
+                    ${item.player == -1 && 
                     (`
-                        <div onclick="PickPlayer(${item.pn})" id="addplayericon${item.pn}" class="absolute inset-0 flex justify-center items-center">
+                        <div id="addplayericon${item.pn}" class="absolute inset-0 flex justify-center items-center">
                             <div class="relative text-gray-400 text-2xl cursor-pointer">
                                 <i class="fa-solid fa-plus"></i>
                             </div>    
@@ -135,8 +137,7 @@ function OpenFormationMenu(){
         document.getElementById("formationtaktik").selectedIndex = formationPicked;
     }
 }
-
-function PickPlayer(pn ){
+function PickPlayer(pn,isOnterain){
     
     fetch('../Data/players.json')
     .then(res=>res.json())
@@ -144,47 +145,55 @@ function PickPlayer(pn ){
         // console.log(Array.from(formations[formationPicked][pn-1].post).slice(-2).join())
         AddPlaperPanel(data ,
              pn ,
-             `${Array.from(formations[formationPicked][pn-1].post).slice(-2).join().replace(/,/g,"")}`)
+             `${isOnterain == false ? "" :Array.from(formations[formationPicked][pn-1].post).slice(-2).join().replace(/,/g,"")}`,isOnterain)
     })
 }
 function ClosePanlePlayers(){
     document.getElementById("playerspanel").innerHTML = ``;
 }
 function checkplayerIdExist(pn){
-    formations.forEach((taktik,i)=>{
-        taktik.forEach((item ,z)=>{
-            if(item.id==pn) return true
-        })
+    let isfind= 1;
+    formations[formationPicked].forEach((item ,z)=>{
+        if(item.player==pn){
+            isfind =  0;
+        }
     })
-    return false ;
+    Subplayer.forEach((item ,z)=>{
+        if(item==pn){
+            isfind =  0;
+        }
+    })
+    return isfind ;
 }
-function AddPlaperPanel(data  , pn , post){
+function AddPlaperPanel(data  , pn , post , isOnterain){
     let PlayerCards = ``;
-    console.log()
     data && data.forEach((item , i)=>{
         // const newCard = document.createElement('div');
         let FindPlayer= data.find((row)=>row.id==item.id);
-        (!checkplayerIdExist(pn) && item.position.includes(""+post)) ? PlayerCards += `
-        <div class='relative shadow-md cursor-pointer' onclick='PickedPlayer(${JSON.stringify(FindPlayer).replace(/'/g, "")},${pn},${item.id})'>
-            <img src="${item.cover ?? './Assets/badge-white.png'}" 
-            class="${item.rating>85 ?'w-28' : 'w-28'}" alt="">
-            
-            <div class="absolute left-[16px] top-[30px] flex flex-col items-center">
-                <h2 class="m-0 p-0 font-bold text-ms ${item.rating>85 && (item.position != "GK" &&'text-[#FFD972]')}">${item.rating}</h2>
-                <span class="text-[8px] font-bold ${item.rating>85 && (item.position != "GK" &&'text-[#FFD972]')}">${item.position}</span>
-                <img class="w-5 ${item.rating>85 &&(item.position != "GK" &&'text-[#FFD972]')}" src="${item.flag}"  alt="" />
+        (checkplayerIdExist(item.id)==1) && ( 
+            (item.position.includes(""+post)) ? PlayerCards += `
+            <div class='relative shadow-md cursor-pointer' onclick='PickedPlayer(${JSON.stringify(FindPlayer).replace(/'/g, "")},${pn},${item.id},${isOnterain})'>
+                <img src="${item.cover ?? './Assets/badge-white.png'}" 
+                class="${item.rating>85 ?'w-28' : 'w-28'}" alt="">
+                
+                <div class="absolute left-[16px] top-[30px] flex flex-col items-center">
+                    <h2 class="m-0 p-0 font-bold text-ms ${item.rating>85 && (item.position != "GK" &&'text-[#FFD972]')}">${item.rating}</h2>
+                    <span class="text-[8px] font-bold ${item.rating>85 && (item.position != "GK" &&'text-[#FFD972]')}">${item.position}</span>
+                    <img class="w-5 ${item.rating>85 &&(item.position != "GK" &&'text-[#FFD972]')}" src="${item.flag}"  alt="" />
+                </div>
+                <img class="absolute left-10 w-16 top-6" src="${item.photo}" alt="" />
+                <div class="absolute left-8 right-8 top-24 font-bold text-xs flex justify-center items-center text-center">
+                    <h2 class="${item.rating>85 && (item.position != "GK" &&'text-[#FFD972]')} ">${item.name}</h2>
+                </div>
+                
             </div>
-            <img class="absolute left-10 w-16 top-6" src="${item.photo}" alt="" />
-            <div class="absolute left-8 right-8 top-24 font-bold text-xs flex justify-center items-center text-center">
-                <h2 class="${item.rating>85 && (item.position != "GK" &&'text-[#FFD972]')} ">${item.name}</h2>
-            </div>
-            
-        </div>
-        ` : ''
+            ` : ''
+        )
+      
     })
 
     document.getElementById("playerspanel").innerHTML = `
-        <div class="border-[#3C4053] rounded-md border-2 w-full py-5 px-6">
+        <div class=" w-full py-5 px-6 h-96" >
             <div class="flex justify-between">
             <h3 class=" text-gray-100">Players</h3>
                 <i class="fa-solid fa-xmark text-white cursor-pointer" onclick="ClosePanlePlayers()"></i>
@@ -198,46 +207,93 @@ function AddPlaperPanel(data  , pn , post){
         </div>
     `;
 }
-
-function PickedPlayer(playerObject , pn ,id){
+function PickedPlayer(playerObject , pn ,id,isOnterain){
     formations[formationPicked].forEach((itm ,i)=>{
         if(itm.pn==pn) {
             itm.player = id ;
         }
     })
-    const Card = document.getElementById(`img${pn}`);
-    Card.innerHTML += 
-    `
-        <div onclick='getPlayerInfo(${JSON.stringify(playerObject)})' class="absolute z-20 cursor-pointer right-0 bottom-10 bg-gray-600 text-white rounded-full h-5 w-5 flex justify-center items-center shadow-sm">
-            <span class="font-sans">i</span>
-        </div>
-    `;
-    document.getElementById(`ratingtext${pn}`).innerHTML = playerObject?.rating;
-    document.getElementById(`playername${pn}`).innerHTML = playerObject?.name;
-    document.getElementById(`posttext${pn}`).innerHTML = playerObject?.position;
-    document.getElementById(`playerclub${pn}`).innerHTML = playerObject?.club;
-
-    (playerObject?.rating >85 && playerObject?.position != "GK" ) && 
-    ( document.getElementById(`ratingtext${pn}`).classList.add('text-[#FFD972]'),
-    document.getElementById(`playername${pn}`).classList.add('text-[#FFD972]'),
-    document.getElementById(`posttext${pn}`).classList.add('text-[#FFD972]'),
-    document.getElementById(`playerclub${pn}`).classList.add('text-[#FFD972]')
-    )
+    if(!isOnterain){
+        const findPlayer = Subplayer.find(ite=>ite==id)
+        if(Subplayer.length<5 && !findPlayer){
+            document.getElementById('subnumber').textContent = (Subplayer.length+1) +"/5" 
+            const element = document.createElement('div');
+            element.style.transition = "all .5s,transform 1s"
+            element.style.transform = "rotateY(0deg)"
+            element.addEventListener("mouseover",()=>{
+                element.style.filter = 'drop-shadow(1px 1px 10px #c4c4c46e)';
+            })
+            element.addEventListener("mouseleave",()=>{
+                element.style.filter = 'none';
+                
+            })
+            element.setAttribute("onclick" , `PickPlayer(${id},false)`)
+            element.setAttribute("id" ,`img${Subplayer.length+1}` )
+            element.classList.add('element');
     
-
-    const addplayericon = document.getElementById(`addplayericon${pn}`);
-    addplayericon.style.display = 'none';
-    document.getElementById(`imgcover${pn}`).setAttribute("src" , playerObject?.cover )
-    document.getElementById(`imgflag${pn}`).setAttribute("src" , playerObject?.flag )
-    document.getElementById(`imgplayer${pn}`).setAttribute("src" , playerObject?.photo )
-    document.getElementById(`imgclub${pn}`).setAttribute("src" , playerObject?.logo )
-
-    Card.style.transform = "rotateY(0deg) scale(1.1)"
-    setTimeout(()=>{
-        Card.style.transform = "rotateY(0deg) scale(1)"
-    },500)
+            element.innerHTML = `
+                    <img id="imgcover${id}" src="${playerObject?.cover}"  class="h-40 " alt="">
+                      
+                        <div class="flex justify-center">
+                            <p id="post${Subplayer.length+1}" class="px-3 text-white bg-gray-800 -translate-y-2 rounded-md w-auto">${playerObject?.position}</p>
+                        </div>
+                        <div class="absolute left-[18px] top-8 flex flex-col items-center">
+                            <h2 id="ratingtext${id}" class="${playerObject.rating>85 && (playerObject.position != "GK" &&'text-[#FFD972]')} m-0 p-0 font-bold text-ms">${playerObject?.rating}</h2>
+                            <span id="posttext${id}" class=" ${playerObject.rating>85 && (playerObject.position != "GK" &&'text-[#FFD972]')} text-[8px]">${playerObject?.position}</span>
+                            <img id="imgflag${id}" class="w-5 " src="${playerObject?.flag}" alt="" />
+                        </div>
+                        <img id="imgplayer${id}" class="absolute left-10 w-16 top-6" src="${playerObject?.photo}" alt="" />
+                        <div class="absolute left-4 right-4 top-[88px]  text-[0.6rem] flex flex-col justify-center items-center text-center">
+                            <h2 class="${playerObject.rating>85 && (playerObject.position != "GK" &&'text-[#FFD972]')} font-bold" id="playername${id}" class="">${playerObject?.name}</h2>
+                            
+                            <div class="flex flex-col items-center">
+                                <span id="playerclub${id}" class="${playerObject.rating>85 && (playerObject.position != "GK" &&'text-[#FFD972]')} text-[0.5rem]">${playerObject?.club}</span>
+                                <img id="imgclub${id}" class="w-4" alt="" src="${playerObject?.logo}" />
+                            </div>
+                            
+                        </div>
+            `
+            document.getElementById("subpanel").appendChild(element) ;
+            Subplayer.push(id);
+        }
+        (Subplayer.length>=5) &&  (document.getElementById('cardtoadd').style.display = `none`)
+        
+    }
+    else{
+        const Card = document.getElementById(`img${pn}`);
+        Card.innerHTML += 
+        `
+            <div onclick='getPlayerInfo(${JSON.stringify(playerObject)})' class="absolute z-20 cursor-pointer right-0 bottom-10 bg-gray-600 text-white rounded-full h-5 w-5 flex justify-center items-center shadow-sm">
+                <span class="font-sans">i</span>
+            </div>
+        `;
+        document.getElementById(`ratingtext${pn}`).innerHTML = playerObject?.rating;
+        document.getElementById(`playername${pn}`).innerHTML = playerObject?.name;
+        document.getElementById(`posttext${pn}`).innerHTML = playerObject?.position;
+        document.getElementById(`playerclub${pn}`).innerHTML = playerObject?.club;
+    
+        (playerObject?.rating >85 && playerObject?.position != "GK" ) && 
+        ( document.getElementById(`ratingtext${pn}`).classList.add('text-[#FFD972]'),
+        document.getElementById(`playername${pn}`).classList.add('text-[#FFD972]'),
+        document.getElementById(`posttext${pn}`).classList.add('text-[#FFD972]'),
+        document.getElementById(`playerclub${pn}`).classList.add('text-[#FFD972]')
+        )
+        
+    
+        const addplayericon = document.getElementById(`addplayericon${pn}`);
+        addplayericon.style.display = 'none';
+        document.getElementById(`imgcover${pn}`).setAttribute("src" , playerObject?.cover )
+        document.getElementById(`imgflag${pn}`).setAttribute("src" , playerObject?.flag )
+        document.getElementById(`imgplayer${pn}`).setAttribute("src" , playerObject?.photo )
+        document.getElementById(`imgclub${pn}`).setAttribute("src" , playerObject?.logo )
+    
+        Card.style.transform = "rotateY(0deg) scale(1.1)"
+        setTimeout(()=>{
+            Card.style.transform = "rotateY(0deg) scale(1)"
+        },500)
+    }
+   
 }
-
 function getPlayerInfo(playerObject){
     document.getElementById(`playerinfo`).innerHTML = 
     `
@@ -246,7 +302,7 @@ function getPlayerInfo(playerObject){
             <h3 class=" text-gray-100">Player information</h3>
                 <i class="fa-solid fa-xmark text-white cursor-pointer" onclick="ClosePanlePlayersinfo()"></i>
             </div>
-            <div class="text-white text-xs grid grid-cols-[1fr,auto] pt-4">
+            <div class="text-white text-xs grid grid-cols-[1fr,auto] gap-2">
                 <div class="flex flex-col gap-4 w-full ">
                     <div class="flex flex-col items-center">
                         <div class="flex gap-3">
@@ -254,22 +310,47 @@ function getPlayerInfo(playerObject){
                         </div>
                         <h3 class="font-semibold">${playerObject?.nationality}</h3>
                     </div>
-                    <div class="grid grid-cols-2 justify-between p-4">
-                        <div class="flex flex-col gap-3">
-                            <p>Position : ${playerObject?.position}</p>
-                            <p>Club :${playerObject?.club}</p>
-                            <p>Rating :${playerObject?.rating}</p>
-                            <p>Pace : ${playerObject?.pace}</p>
-                            <p>Shooting : ${playerObject?.shooting}</p>
+                    <div class="grid grid-cols-2 gap-2 justify-between p-2">
+                        <div class="flex flex-col gap-1">
+                            <p class="grid grid-cols-[1fr,auto]">
+                                <span>Position : </span> 
+                                <span class=" px-[2px] py-[2px]">${playerObject?.position}</span>
+                            </p>
+                            <p class="grid grid-cols-[1fr,auto]">
+                                <span>Rating : </span> 
+                                <span class="border-[2px] border-green-400 px-[2px] py-[2px]">${playerObject?.rating}</span>
+                            </p>
+                             <p class="grid grid-cols-[1fr,auto]">
+                                <span>Pace : </span> 
+                                <span class="border-[2px] border-green-400 px-[2px] py-[2px]">${playerObject?.pace}</span>
+                            </p>
+                            <p class="grid grid-cols-[1fr,auto]">
+                                <span>Shooting : </span> 
+                                <span class="border-[2px] border-green-400 px-[2px] py-[2px]">${playerObject?.shooting}</span>
+                            </p>
+                            <p class="grid grid-cols-[1fr,auto]">
+                                <span>Physical : </span> 
+                                <span class="border-[2px] border-green-400 px-[2px] py-[2px]">${playerObject?.physical}</span>
+                            </p>
                         </div>
-                        <div class="flex flex-col gap-3">
+                        <div class="flex flex-col gap-1">
+                        <p class="grid grid-cols-[1fr,auto]">
+                                <span>Club : </span> 
+                                <span class=" px-[2px] py-[2px]">${playerObject?.club}</span>
+                            </p>
                             <p class="grid grid-cols-[1fr,auto]">
                                 <span>Passing : </span> 
                                 <span class="border-[2px] border-green-400 px-[2px] py-[2px]">${playerObject?.passing}</span>
                             </p>
-                            <p>Dribbling : ${playerObject?.dribbling}</p>
-                            <p>Defending : ${playerObject?.defending}</p>
-                            <p>Physical : ${playerObject?.physical}</p>
+                            <p class="grid grid-cols-[1fr,auto]">
+                                <span>Dribbling : </span> 
+                                <span class="border-[2px] border-green-400 px-[2px] py-[2px]">${playerObject?.dribbling}</span>
+                            </p>
+                            <p class="grid grid-cols-[1fr,auto]">
+                                <span>Defending : </span> 
+                                <span class="border-[2px] border-green-400 px-[2px] py-[2px]">${playerObject?.defending}</span>
+                            </p>
+                            
                         </div>
                         
                     </div>
@@ -285,9 +366,11 @@ function getPlayerInfo(playerObject){
             
 
         </div>
-    `;
-    
+    `;    
 }
 function ClosePanlePlayersinfo(){
     document.getElementById(`playerinfo`).innerHTML= ``;
+}
+function AddSubs(){
+    PickPlayer(0,false)
 }

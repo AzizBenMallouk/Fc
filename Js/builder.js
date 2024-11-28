@@ -26,7 +26,6 @@ const formations = [
         { pn : 11 ,x: 530, y: 395 , post: 'ST' ,player : -1},
     ]
 ]
-const playerUsed = [];
 let formationPicked = 0;
 const DefaultPositions = () =>{
    formationPicked = localStorage.getItem("fp") ?? 0 ;
@@ -65,15 +64,15 @@ const DefaultPositions = () =>{
                     <div class="absolute left-[18px] top-8 flex flex-col items-center">
                         <h2 id="ratingtext${item.pn}" class="m-0 p-0 font-bold text-ms"></h2>
                         <span id="posttext${item.pn}" class="text-[8px]"></span>
-                        <img id="imgflag${item.pn}" class="w-5 "  />
+                        <img id="imgflag${item.pn}" class="w-5 " alt="" />
                     </div>
-                    <img id="imgplayer${item.pn}" class="absolute left-10 w-16 top-6"  />
+                    <img id="imgplayer${item.pn}" class="absolute left-10 w-16 top-6" alt="" />
                     <div class="absolute left-4 right-4 top-[88px]  text-[0.6rem] flex flex-col justify-center items-center text-center">
                         <h2 class="font-bold" id="playername${item.pn}" class=""></h2>
                         
                         <div class="flex flex-col items-center">
                             <span id="playerclub${item.pn}" class="text-[0.5rem]"></span>
-                            <img id="imgclub${item.pn}" class="w-4"  />
+                            <img id="imgclub${item.pn}" class="w-4" alt="" />
                         </div>
                         
                     </div>
@@ -151,13 +150,21 @@ function PickPlayer(pn ){
 function ClosePanlePlayers(){
     document.getElementById("playerspanel").innerHTML = ``;
 }
+function checkplayerIdExist(pn){
+    formations.forEach((taktik,i)=>{
+        taktik.forEach((item ,z)=>{
+            if(item.id==pn) return true
+        })
+    })
+    return false ;
+}
 function AddPlaperPanel(data  , pn , post){
     let PlayerCards = ``;
     console.log()
     data && data.forEach((item , i)=>{
         // const newCard = document.createElement('div');
         let FindPlayer= data.find((row)=>row.id==item.id);
-        item.position.includes(""+post) ? PlayerCards += `
+        (!checkplayerIdExist(pn) && item.position.includes(""+post)) ? PlayerCards += `
         <div class='relative shadow-md cursor-pointer' onclick='PickedPlayer(${JSON.stringify(FindPlayer).replace(/'/g, "")},${pn},${item.id})'>
             <img src="${item.cover ?? './Assets/badge-white.png'}" 
             class="${item.rating>85 ?'w-28' : 'w-28'}" alt="">
@@ -165,9 +172,9 @@ function AddPlaperPanel(data  , pn , post){
             <div class="absolute left-[16px] top-[30px] flex flex-col items-center">
                 <h2 class="m-0 p-0 font-bold text-ms ${item.rating>85 && (item.position != "GK" &&'text-[#FFD972]')}">${item.rating}</h2>
                 <span class="text-[8px] font-bold ${item.rating>85 && (item.position != "GK" &&'text-[#FFD972]')}">${item.position}</span>
-                <img class="w-5 ${item.rating>85 &&(item.position != "GK" &&'text-[#FFD972]')}" src="${item.flag}"   />
+                <img class="w-5 ${item.rating>85 &&(item.position != "GK" &&'text-[#FFD972]')}" src="${item.flag}"  alt="" />
             </div>
-            <img class="absolute left-10 w-16 top-6" src="${item.photo}" />
+            <img class="absolute left-10 w-16 top-6" src="${item.photo}" alt="" />
             <div class="absolute left-8 right-8 top-24 font-bold text-xs flex justify-center items-center text-center">
                 <h2 class="${item.rating>85 && (item.position != "GK" &&'text-[#FFD972]')} ">${item.name}</h2>
             </div>
@@ -183,7 +190,8 @@ function AddPlaperPanel(data  , pn , post){
                 <i class="fa-solid fa-xmark text-white cursor-pointer" onclick="ClosePanlePlayers()"></i>
                 </div>
                 <div class="flex flex-wrap gap-2">
-                ${PlayerCards.length>0 ? PlayerCards : `<div class="flex gap-2 ite px-5 py-2 w-full mt-10 border-2 border-gray-700 text-gray-200">
+                ${PlayerCards.length>0 ? PlayerCards : `
+                <div class="flex gap-2 ite px-5 py-2 w-full mt-10 border-2 border-gray-700 text-gray-200">
                 <i class="fa-regular fa-futbol"></i><span>0 player found</span>
                 </div>`}
                 </div>
@@ -242,31 +250,34 @@ function getPlayerInfo(playerObject){
                 <div class="flex flex-col gap-4 w-full ">
                     <div class="flex flex-col items-center">
                         <div class="flex gap-3">
-                            <img class="w-16" src="${playerObject?.flag}" >
+                            <img class="w-16" src="${playerObject?.flag}" alt="" >
                         </div>
                         <h3 class="font-semibold">${playerObject?.nationality}</h3>
                     </div>
-                    <div class="grid grid-cols-2 justify-between">
-                        <div>
-                            <p>position : ${playerObject?.position}</p>
-                            <p>club :${playerObject?.club}</p>
-                            <p>rating :${playerObject?.rating}</p>
-                            <p>pace : ${playerObject?.pace}</p>
-                            <p>shooting : ${playerObject?.shooting}</p>
+                    <div class="grid grid-cols-2 justify-between p-4">
+                        <div class="flex flex-col gap-3">
+                            <p>Position : ${playerObject?.position}</p>
+                            <p>Club :${playerObject?.club}</p>
+                            <p>Rating :${playerObject?.rating}</p>
+                            <p>Pace : ${playerObject?.pace}</p>
+                            <p>Shooting : ${playerObject?.shooting}</p>
                         </div>
-                        <div>
-                            <p>passing : ${playerObject?.passing}</p>
-                            <p>dribbling : ${playerObject?.dribbling}</p>
-                            <p>defending : ${playerObject?.defending}</p>
-                            <p>physical : ${playerObject?.physical}</p>
+                        <div class="flex flex-col gap-3">
+                            <p class="grid grid-cols-[1fr,auto]">
+                                <span>Passing : </span> 
+                                <span class="border-[2px] border-green-400 px-[2px] py-[2px]">${playerObject?.passing}</span>
+                            </p>
+                            <p>Dribbling : ${playerObject?.dribbling}</p>
+                            <p>Defending : ${playerObject?.defending}</p>
+                            <p>Physical : ${playerObject?.physical}</p>
                         </div>
                         
                     </div>
                 </div>
                 <div class="grid gap-1">
-                     <img class="w-28 border-2 border-gray-300 bg-[#3a357357] rounded-md" src="${playerObject?.photo}">
+                     <img class="w-28 border-2 border-gray-300 bg-[#3a357357] rounded-md" src="${playerObject?.photo}" alt="">
                      <h2 class="font-bold">${playerObject?.name}</h2>
-                     <img class="w-10" src="${playerObject?.logo}" >
+                     <img class="w-10" src="${playerObject?.logo}" alt="" >
                 </div>
                 
 

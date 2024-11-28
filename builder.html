@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Build-terain</title>
     <link rel="stylesheet" href="./Css/input.css">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -14,9 +14,9 @@
         <div class="container grid grid-cols-[auto,1fr,auto] items-center py-4 px-3 text-gray-200">
             <h2 class="text-[#6158CA]">AmineFC</h2>
             <ul class="flex justify-center gap-6">
-                <li>Home</li>
-                <li>Player</li>
-                <li>Setting</li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/builder.html">Build</a></li>
+                <li><a href="/players.html">Players</a></li>
             </ul>
             <div class="flex items-center gap-5">
                 <button class="text-[#6158CA]  bg-white rounded-md px-3 py-1">Login</button>
@@ -48,30 +48,88 @@
     <section>
         <div class="container">
             <div class="grid grid-cols-[1fr,500px]">
-                <div class="h-full grid containersplited">
-                    <div class="tt flex justify-center relative">
+                <div class="h-full grid ">
+                    <div class="tt flex relative">
                         <div class="terain"></div>
-                        <div id="canvas" class="absolute h-full w-full"></div>
+                        <div id="canvas" class="absolute h-[731px] w-[892px]"></div>
                     </div>
-                    <div class="hidden mt-2 flex flex-row-reverse">
-                        <div class="">
-                            <img src="./Assets/badge_gold.webp" class="h-32 transition-all" alt="" srcset="">
+                  
+                    <div class=" mt-2 ">
+                        <div class="border-b-[1px] border-gray-400 flex justify-end">
+                            <span class="text-gray-400">2/6</span>
+                        </div>
+                        <div class="flex flex-row-reverse">
+                            <div class="relative element" id="img9" style="transition: 0.5s;filter: none;"><img id="imgcover9" src="https://fv2-2.files.fm/thumb_show.php?i=7sbzk7mgem&amp;view&amp;v=1&amp;PHPSESSID=fac250debc6a4f58f3a3c2b3c8c890dfbed6c0fb" class="h-40 " alt="">
+                
+                  
+           
+                
+                                <div onclick="PickPlayer(9)" id="addplayericon9" class="absolute inset-0 flex justify-center items-center" style="display: none;">
+                                    <div class="relative text-gray-400 text-2xl cursor-pointer">
+                                        <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                                    </div>    
+                               
+                                </div>
+                                
                             <div class="flex justify-center">
-                                <p id="post${index}" class="px-3 text-white bg-gray-800 -translate-y-2 rounded-md w-auto">GK
-                                </p>
+                                <p id="post8" class="px-3 text-white bg-gray-800 -translate-y-2 rounded-md w-auto">LW</p>
+                            </div>
+                            <div class="absolute left-[18px] top-8 flex flex-col items-center">
+                                <h2 id="ratingtext9" class="m-0 p-0 font-bold text-ms text-[#FFD972]">90</h2>
+                                <span id="posttext9" class="text-[8px] text-[#FFD972]">LW</span>
+                                <img id="imgflag9" class="w-5 " alt="" src="https://cdn.sofifa.net/flags/br.png">
+                            </div>
+                            <img id="imgplayer9" class="absolute left-10 w-16 top-6" alt="" src="https://cdn.sofifa.net/players/190/871/25_120.png">
+                            <div class="absolute left-4 right-4 top-[88px]  text-[0.6rem] flex flex-col justify-center items-center text-center">
+                                <h2 class="font-bold text-[#FFD972]" id="playername9">Neymar Jr</h2>
+                                
+                                <div class="flex flex-col items-center">
+                                    <span id="playerclub9" class="text-[0.5rem] text-[#FFD972]">Al-Hilal</span>
+                                    <img id="imgclub9" class="w-4" alt="" src="https://cdn.sofifa.net/meta/team/7011/120.png">
+                                </div>
+                                
+                            </div>
+                            
+                
+                            <div class="absolute z-20 cursor-pointer right-0 bottom-10 bg-gray-600 text-white rounded-full h-5 w-5 flex justify-center items-center shadow-sm">
+                                <span class="font-sans">i</span>
+                            </div>
+                            </div>
+                            <div class="relative element" id="img9" style="transition: 0.5s;filter: none;"><img id="imgcover9" src="./Assets/image.png" class="h-40 " alt="">
+                                <div onclick="PickPlayer(9)" id="addplayericon9" class="absolute inset-0 flex justify-center items-center">
+                                    <div class="relative text-gray-400 text-2xl cursor-pointer">
+                                        <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                                    </div>    
+                               
+                                </div>
+                                
+                            <div class="flex justify-center">
+                                <p id="post8" class="px-3 text-white bg-gray-800 -translate-y-2 rounded-md w-auto">LW</p>
+                            </div>
+                            <div class="absolute left-[18px] top-8 flex flex-col items-center">
+                                <h2 id="ratingtext9" class="m-0 p-0 font-bold text-ms"></h2>
+                                <span id="posttext9" class="text-[8px]"></span>
+                                <img id="imgflag9" class="w-5 " alt="">
+                            </div>
+                            <img id="imgplayer9" class="absolute left-10 w-16 top-6" alt="">
+                            <div class="absolute left-4 right-4 top-[88px]  text-[0.6rem] flex flex-col justify-center items-center text-center">
+                                <h2 class="font-bold" id="playername9"></h2>
+                                
+                                <div class="flex flex-col items-center">
+                                    <span id="playerclub9" class="text-[0.5rem]"></span>
+                                    <img id="imgclub9" class="w-4" alt="">
+                                </div>
+                                
+                            </div>
+                            
                             </div>
                         </div>
-                        <div class="">
-                            <img src="./Assets/badge_gold.webp" class="h-32 transition-all" alt="" srcset="">
-                            <div class="flex justify-center">
-                                <p id="post${index}" class="px-3 text-white bg-gray-800 -translate-y-2 rounded-md w-auto">GK
-                                </p>
-                            </div>
-                        </div>
+
+                        
                     </div>
                 </div>
     
-                <div class="w-full flex flex-col gap-2 px-6 ">
+                <div class="w-full flex flex-col gap-2 px-6 pt-16">
                     <div id="formations" ipOpened="false"
                         class="border-[#3C4053] rounded-md border-2 w-full py-5 px-10 transition-all">
                         <div class="flex justify-between items-center" onclick="OpenFormationMenu()">
@@ -81,10 +139,10 @@
                         </div>
                         <div id="formationcontent"></div>
                     </div>
-                    <div id="playerinfo" class="overflow-y-auto">
+                    <div id="playerinfo" >
                         
                     </div>
-                    <div id="playerspanel">
+                    <div id="playerspanel" class="overflow-y-auto">
                         
                     </div>
     

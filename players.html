@@ -13,15 +13,15 @@
 </head>
 <body>
     <header class="text-sm border-b-[1px] border-gray-600">
-        <div class="container grid grid-cols-[auto,1fr,auto] items-center py-4 px-3 text-gray-200">
-            <h2 class="text-[#6158CA]">AmineFC</h2>
-            <ul class="flex justify-center gap-6">
+        <div class="container  grid grid-cols-[auto,1fr,auto] max-md:gap-2 max-md:grid-cols-1 max-md:justify-center items-center  py-4 px-3 text-gray-200">
+            <h2 class="text-[#6158CA] text-center">AmineFC</h2>
+            <ul class="flex justify-center gap-6 max-md:font-semibold max-md:gap-12 ">
                 <li><a href="./">Home</a></li>
                 <li><a href="./builder.html">Build</a></li>
                 <li><a href="./players.html">Players</a></li>
 
             </ul>
-            <div class="flex items-center gap-5">
+            <div class="flex items-center gap-5 max-md:hidden">
                 <button class="text-[#6158CA]  bg-white rounded-md px-3 py-1">Login</button>
                 <button class="bg-[#6158CA]  rounded-md px-3 py-1">Sign Up</button>
                 <div
@@ -34,169 +34,179 @@
     </header>
     <div class="lc"></div>
     <div class="rc"></div>
-    <section class="mx-8">
+    <section class="mx-8 max-md:mx-2">
         <div class="container h-[100%]">
-            <div class="h-[80vh]  border-[1px] border-gray-400 mt-12  rounded-md py-3 ">
-                <div class="px-8 pb-4 border-b-[1px] flex justify-between items-center ">
+            <div class="h-[80vh] border-[1px] border-gray-400 mt-12 max-md:mt-3  rounded-md py-3 ">
+                <div class="px-8 max-md:px-3 pb-4 border-b-[1px] flex justify-between items-center ">
                     <h2 class="text-xl text-white " border-gray-400>Players</h2>
 
-                    <div onclick="OpenFormPanel()" class="cursor-pointer text-gray-50 rounded-md bg-[#6158CA] px-3 py-2 flex justify-center items-center gap-2">
+                    <div onclick="OpenFormPanel()" class="cursor-pointer text-gray-50 rounded-md bg-[#6158CA] px-3 py-2 max-md:py-1 flex justify-center items-center gap-2">
                         <i class="fa-solid fa-plus"></i>
                         <span>Add Player</span>
                     </div> 
                 </div>
 
                 <div id="FormPanel"  isOpned="false" class="grid h-[100%] w-full ">
-                    <div id="playerslist" class="flex flex-wrap h-[100%] justify-center">
+                    <div id="playerslist" class="flex flex-wrap  h-[100%] ">
                         
                     </div>
                     <form id="FormPanelEdit" action="" class="relative hidden" >
                         <div id="progressloading" class='h-1.5 w-full hidden overflow-hidden'>
                             <div class='progress w-full h-full bg-[#6158CA] left-right'></div>
                           </div>
-                        <div id="panleform" class="flex justify-center py-3 h-full">
-                            <div class="w-[500px]">
-
-                                <div class="relative w-full border-[1px] border-dashed rounded-md flex flex-col px-5 py-3 items-center">
-                                    <i class="fa-solid fa-image text-blue-400 text-3xl"></i>
-                                    <h4 class="text-gray-50 font-semibold text-md">Drag & Drop</h4>
-                                    <div class="flex gap-2 flex items-center">
-                                        <span class="text-white">or</span>
-                                        <input class="my-2 text-gray-50"
-                                        accept="image/png, image/jpg, image/jpeg"
-                                        type="file" id="fileInput" multiple />
-                                    </div>
-                                    <h6 class="mt-1 text-gray-300 text-[0.6rem]">Supports : JPEG , JPG, PNG</h6>
-
-                                    <h2 id="imagepanelR" class="text-2xl text-red-600 absolute top-2 right-5"></h2>
-                                </div>
+                        <div id="panleform" class="flex justify-center py-3 h-full  mx-5 ">
+                            <div class="max-md:fixed max-md:inset-7 max-md:bg-[#fff]  max-md:rounded-md max-md:border-[1px]  max-md:border-white overflow-y-auto">
+                                <div class="p-3">
+                                    <div class="relative w-full border-[1px] max-md:border-black border-dashed rounded-md flex flex-col justify-center px-5 py-3 items-center">
+                                        <i class="fa-solid fa-image text-blue-400 text-3xl"></i>
+                                        <h4 class="text-gray-50 max-md:text-black font-semibold text-md">Drag & Drop</h4>
+                                        <div class="flex gap-2 flex items-center">
+                                            <span class="text-white">or</span>
+                                            <input class="my-2 text-gray-50 max-md:text-black"
+                                            accept="image/png, image/jpg, image/jpeg"
+                                            type="file" id="fileInput" multiple />
+                                        </div>
+                                        <h6 class="mt-1 text-gray-300 max-md:text-black text-[0.6rem]">Supports : JPEG , JPG, PNG</h6>
     
-                                <div class="relative grid gap-[10px] mt-2 text-white">
-                                    <div class="grid grid-cols-[80px,1fr] items-center">
-
-                                        <span >
-                                            <span> Name : </span>
-                                            <span class="text-red-500" id="textNamelabel"></span>
-                                        </span>
-                                        <input id="txtplayerName" class="px-2 py-1 bg-transparent border-[1px] border-gray-400 rounded-md" type="text" />
+                                        <h2 id="imagepanelR" class="text-2xl text-red-600 absolute top-2 right-5"></h2>
                                     </div>
-                                   <div class="grid grid-cols-2 gap-4">
-                                        <div class="grid grid-cols-[80px,1fr] items-center">
+        
+                                    <div class="relative grid gap-[10px] mt-2 text-white  max-md:text-black">
+                                        <div class="grid grid-cols-[80px,1fr]  items-center">
                                             <span >
-                                                <span> Flag : </span>
-                                                <span class="text-red-500" id="textflaglabel"></span>
+                                                <span> Name : </span>
+                                                <span class="text-red-500" id="textNamelabel"></span>
                                             </span>
-                                                <select id="FlagCombo" placeholder="Select an option...">
-                                               </select>
+                                            <input id="txtplayerName" class="px-2 py-1 bg-transparent border-[1px] border-gray-400 rounded-md" type="text" />
+                                        </div>
+    
+                                       <div class="grid grid-cols-2 max-md:grid-cols-1 gap-4">
+                                            <div class="grid grid-cols-[80px,1fr] items-center">
+                                                <span >
+                                                    <span> Flag : </span>
+                                                    <span class="text-red-500" id="textflaglabel"></span>
+                                                </span>
+                                                    <select id="FlagCombo" placeholder="Select an option...">
+                                                   </select>
+                                            </div>
+                                            <div class="grid grid-cols-[80px,1fr] items-center">
+    
+                                                <span >
+                                                    <span> Club : </span>
+                                                    <span class="text-red-500" id="textClublabel"></span>
+                                                </span>
+                                                  <select id="ClubCombo" placeholder="Select an option...">
+                                                  </select>
+    
+                                            </div>
+                                       </div>
+                                       <div class="grid grid-cols-2 max-md:grid-cols-1 gap-4">
+                                        <div class="grid grid-cols-[80px,1fr]  items-center">
+                                            <span >
+                                                <span> Cover : </span>
+                                                <span class="text-red-500" id="textcoverlabel"></span>
+                                            </span>
+                                            <select id="CoverCombo" placeholder="Select an option...">
+                                            </select>
                                         </div>
                                         <div class="grid grid-cols-[80px,1fr] items-center">
-
-                                            <span >
-                                                <span> Club : </span>
-                                                <span class="text-red-500" id="textClublabel"></span>
-                                            </span>
-                                              <select id="ClubCombo" placeholder="Select an option...">
+                                            <span>Position : </span>
+    
+                                            <select id="ComboplayerPosition" class="h-full px-2 max-md:py-[5px] text-[#3E3E3E] text-xs max-md:text-lg border-[#B8B8B8] border-[1px] rounded-sm" placeholder="Select an option...">
+                                                                <!-- Goalkeeper -->
+                                                                <option value="GK">Goalkeeper (GK)</option>
+    
+                                                                <!-- Defenders -->
+                                                                <option value="CB">Center-Back (CB)</option>
+                                                                <option value="LB">Left Back (LB)</option>
+                                                                <option value="RB">Right Back (RB)</option>
+                                                                <option value="LWB">Left Wing-Back (LWB)</option>
+                                                                <option value="RWB">Right Wing-Back (RWB)</option>
+                                                                <option value="SW">Sweeper (SW)</option>
+    
+                                                                <!-- Midfielders -->
+                                                                <option value="CDM">(CDM)</option>
+                                                                <option value="CM">Central Midfielder (CM)</option>
+                                                                <option value="CAM">(CAM)</option>
+                                                                <option value="LM">Left Midfielder (LM)</option>
+                                                                <option value="RM">Right Midfielder (RM)</option>
+                                                                <option value="BBM">Box-to-Box Midfielder</option>
+                                                                <option value="DPM">Deep-Lying Playmaker</option>
+    
+                                                                <!-- Forwards -->
+                                                                <option value="ST">Striker (ST)</option>
+                                                                <option value="CF">Center Forward (CF)</option>
+                                                                <option value="LW">Left Winger (LW)</option>
+                                                                <option value="RW">Right Winger (RW)</option>
+                                                                <option value="SS">Second Striker (SS)</option>
+                                                                <option value="FN">False Nine</option>
                                               </select>
-
                                         </div>
-                                   </div>
-                                   <div class="grid grid-cols-2 gap-4">
-                                    <div class="grid grid-cols-[80px,1fr] items-center">
-
-                                        <span >
-                                            <span> Cover : </span>
-                                            <span class="text-red-500" id="textcoverlabel"></span>
-                                        </span>
-                                        <select id="CoverCombo" placeholder="Select an option...">
-                                        </select>
-                                    </div>
-                                    <div class="grid grid-cols-[80px,1fr] items-center">
-                                        <span>Position : </span>
-
-                                        <select id="ComboplayerPosition" class="h-full px-2 text-[#3E3E3E] text-xs border-[#B8B8B8] border-[1px] rounded-sm" placeholder="Select an option...">
-                                                            <!-- Goalkeeper -->
-                                                            <option value="GK">Goalkeeper (GK)</option>
-
-                                                            <!-- Defenders -->
-                                                            <option value="CB">Center-Back (CB)</option>
-                                                            <option value="LB">Left Back (LB)</option>
-                                                            <option value="RB">Right Back (RB)</option>
-                                                            <option value="LWB">Left Wing-Back (LWB)</option>
-                                                            <option value="RWB">Right Wing-Back (RWB)</option>
-                                                            <option value="SW">Sweeper (SW)</option>
-
-                                                            <!-- Midfielders -->
-                                                            <option value="CDM">(CDM)</option>
-                                                            <option value="CM">Central Midfielder (CM)</option>
-                                                            <option value="CAM">(CAM)</option>
-                                                            <option value="LM">Left Midfielder (LM)</option>
-                                                            <option value="RM">Right Midfielder (RM)</option>
-                                                            <option value="BBM">Box-to-Box Midfielder</option>
-                                                            <option value="DPM">Deep-Lying Playmaker</option>
-
-                                                            <!-- Forwards -->
-                                                            <option value="ST">Striker (ST)</option>
-                                                            <option value="CF">Center Forward (CF)</option>
-                                                            <option value="LW">Left Winger (LW)</option>
-                                                            <option value="RW">Right Winger (RW)</option>
-                                                            <option value="SS">Second Striker (SS)</option>
-                                                            <option value="FN">False Nine</option>
-                                          </select>
-                                    </div>
-                                    </div>
-                                    <div class=" py-2 grid gap-4">
-                                        <div class="grid grid-cols-2 gap-4">
-
-                                            <div class="grid grid-cols-[120px,1fr] items-center">
-                                                <span id="RatingDisplay">Rating (10) : </span>
-                                                <input id="RangePlayerRating" type="range" min="10" max="99" value="10">  
-                                            </div>
-                                            <div class="grid grid-cols-[120px,1fr] items-center">
-                                                <span id="PaceDisplay">Pace  (10) : </span>
-                                                <input id="RangePlayerPace"  type="range" min="10" max="99" value="10">
-                                            </div>
                                         </div>
-                                        <div class="grid grid-cols-2 gap-4">
-
-                                            <div class="grid grid-cols-[120px,1fr] items-center">
-                                                <span id="ShootingDisplay">Shooting  (10) : </span>
-                                                <input  id="RangePlayerShooting" type="range"  min="10" max="99" value="10">
-                                            </div>
-                                            <div class="grid grid-cols-[120px,1fr] items-center">
-                                                <span id="PassingDisplay" >Passing  (10) : </span>
-                                                <input id="RangePlayerPassing" type="range" min="10" max="99" value="10">
-                                            </div>
-                                        </div>
-                                        <div class="grid grid-cols-2 gap-4">
-
-                                            <div class="grid grid-cols-[120px,1fr] items-center">
-                                                <span id="DribblingDisplay">Dribbling  (10) : </span>
-                                                <input id="RangePlayerDribbling" type="range" min="10" max="99" value="10">
-                                            </div>
-                                            <div class="grid grid-cols-[120px,1fr] items-center">
-                                                <span id="DefendingDisplay">Defending  (10) : </span>
-                                                <input id="RangePlayerDefending" type="range"  min="10" max="99" value="10">
+                                        <div class=" py-2 grid gap-4">
+                                            <div class="grid grid-cols-2 max-md:grid-cols-1 gap-4">
     
+                                                <div class="grid grid-cols-[120px,1fr] items-center">
+                                                    <span id="RatingDisplay">Rating (10) : </span>
+                                                    <input id="RangePlayerRating" type="range" min="10" max="99" value="10">  
+                                                </div>
+                                                <div class="grid grid-cols-[120px,1fr] items-center">
+                                                    <span id="PaceDisplay">Pace  (10) : </span>
+                                                    <input id="RangePlayerPace"  type="range" min="10" max="99" value="10">
+                                                </div>
+                                            </div>
+                                            <div class="grid grid-cols-2 max-md:grid-cols-1 gap-4">
+    
+                                                <div class="grid grid-cols-[120px,1fr] items-center">
+                                                    <span id="ShootingDisplay">Shooting  (10) : </span>
+                                                    <input  id="RangePlayerShooting" type="range"  min="10" max="99" value="10">
+                                                </div>
+                                                <div class="grid grid-cols-[120px,1fr] items-center">
+                                                    <span id="PassingDisplay" >Passing  (10) : </span>
+                                                    <input id="RangePlayerPassing" type="range" min="10" max="99" value="10">
+                                                </div>
+                                            </div>
+                                            <div class="grid grid-cols-2 max-md:grid-cols-1 gap-4">
+    
+                                                <div class="grid grid-cols-[120px,1fr] items-center">
+                                                    <span id="DribblingDisplay">Dribbling  (10) : </span>
+                                                    <input id="RangePlayerDribbling" type="range" min="10" max="99" value="10">
+                                                </div>
+                                                <div class="grid grid-cols-[120px,1fr] items-center">
+                                                    <span id="DefendingDisplay">Defending  (10) : </span>
+                                                    <input id="RangePlayerDefending" type="range"  min="10" max="99" value="10">
+        
+                                                </div>
+                                            </div>
+                                            <div class="grid grid-cols-2 max-md:grid-cols-1 gap-4 items-center">
+    
+                                                <div class="grid grid-cols-[120px,1fr] items-center">
+                                                    <span id="PhysicalDisplay">Physical  (10) : </span>
+                                                    <input  id="RangePlayerPhysical" type="range" min="10" max="99" value="10">
+                                                </div>
+                                                <div class="grid grid-cols-1 max-md:grid-cols-2 max-md:gap-2">
+                                                    <button type="submit" onclick="ClosePopPUPFormulaire(event)" 
+                                                        class="absolute max-md:static max-md:w-full right-0 flex justify-center items-center h-11 w-11 text-sm py-1 rounded-full max-md:rounded-sm text-white bg-[#f72d2d] " >
+                                                        <i class="fa-solid fa-xmark"></i><span class="ml-2">Cancel</span>
+                                                    </button>
+                                                    <button type="submit" onclick="AddPlayer(event)" 
+                                                    class="absolute max-md:static max-md:w-full right-0 flex justify-center items-center h-11 w-11 text-sm py-1 rounded-full max-md:rounded-sm text-white bg-[#6158CA]  " >
+                                                    <i class="fa-solid fa-floppy-disk"></i><span class="ml-2">Save</span>
+                                                    </button>
+                                                    
+                                                </div>
+                                                
                                             </div>
                                         </div>
-                                        <div class="grid grid-cols-2 gap-4 items-center">
-
-                                            <div class="grid grid-cols-[120px,1fr] items-center">
-                                                <span id="PhysicalDisplay">Physical  (10) : </span>
-                                                <input  id="RangePlayerPhysical" type="range" min="10" max="99" value="10">
-                                            </div>
-                                            <button type="submit" onclick="AddPlayer(event)" 
-                                                class="absolute right-0 flex justify-center items-center h-11 w-11 text-sm py-1 rounded-full text-white bg-[#6158CA]" >
-                                                <i class="fa-solid fa-floppy-disk"></i>
-                                            </button>
-                                        </div>
+                                        
+                                       
+    
                                     </div>
-                                    
-                                   
-
+                                    <!-- <img style="mix-blend-mode: multiply;" src="https://w7.pngwing.com/pngs/895/199/png-transparent-spider-man-heroes-download-with-transparent-background-free-thumbnail.png" /> -->
                                 </div>
-                                <!-- <img style="mix-blend-mode: multiply;" src="https://w7.pngwing.com/pngs/895/199/png-transparent-spider-man-heroes-download-with-transparent-background-free-thumbnail.png" /> -->
+
                             </div>
+                           
                             
                         </div>
                         

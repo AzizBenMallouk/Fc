@@ -47,6 +47,7 @@ body{
    rotateX(40deg) ;
   transition: transform 1s, opacity 0.5s; 
   animation: displayloading 1s;
+  /* background-color: #39337bdf; */
 }
 /* .terain:hover{
   transform: rotateX(200deg) ;
@@ -121,8 +122,7 @@ body{
     100% {
         transform:  translateX(100%) scaleX(0.5);
     }
-<<<<<<< HEAD
-=======
+
 }
 
 
@@ -164,5 +164,4 @@ body{
 
 #FormPanel{
   transition: all;
->>>>>>> devs
 }

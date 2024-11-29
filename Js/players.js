@@ -108,7 +108,7 @@ function AddPlaperPanel(data){
 
     document.getElementById("playerslist").innerHTML = `
         <div class="h-[70vh] overflow-y-auto " >
-                <div class="flex flex-wrap gap-2">
+                <div class="flex flex-wrap justify-center gap-2">
                 ${PlayerCards.length>0 ? PlayerCards : `
                 <div class="flex gap-2 ite px-5 py-2 w-full mt-10 border-2 border-gray-700 text-gray-200">
                 Empty data players</span>
@@ -250,17 +250,22 @@ function OpenFormPanel(){
   if(document.getElementById("FormPanel").getAttribute('isopned') == 'true'){
     document.getElementById("FormPanel").setAttribute('isopned','false')
     document.getElementById("FormPanel").classList.add("grid-cols-1")
-    document.getElementById("FormPanel").classList.remove("grid-cols-[1fr,550px]")
+    document.getElementById("FormPanel").classList.remove("grid-cols-[1fr,auto]")
     document.getElementById("FormPanelEdit").classList.add("hidden")
   }
   else{
     document.getElementById("FormPanel").setAttribute('isopned','true')
     document.getElementById("FormPanel").classList.remove("grid-cols-1")
-    document.getElementById("FormPanel").classList.add("grid-cols-[1fr,550px]")
+    document.getElementById("FormPanel").classList.add("grid-cols-[1fr,auto]")
     document.getElementById("FormPanelEdit").classList.remove("hidden")
   }
 }
 
+
+function ClosePopPUPFormulaire(e){
+  e.preventDefault();
+  document.getElementById("FormPanelEdit").classList.add('hidden')
+}
 new TomSelect('#FlagCombo',{
   valueField: 'img',
   labelField: 'name',

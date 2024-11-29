@@ -47,8 +47,11 @@
                     <div id="playerslist" class="flex flex-wrap h-[100%] justify-center">
                         
                     </div>
-                    <form action="">
-                        <div class="flex justify-center py-3 h-full">
+                    <form action="" class="relative" >
+                        <div id="progressloading" class='h-1.5 w-full hidden overflow-hidden'>
+                            <div class='progress w-full h-full bg-[#6158CA] left-right'></div>
+                          </div>
+                        <div id="panleform" class="flex justify-center py-3 h-full">
                             <div class="w-[500px]">
                                 <div class="w-full border-[1px] border-dashed rounded-md flex flex-col px-5 py-3 items-center">
                                     <i class="fa-solid fa-image text-blue-400 text-3xl"></i>
@@ -57,7 +60,7 @@
                                         <span class="text-white">or</span>
                                         <input class="my-2 text-gray-50"
                                         accept="image/png, image/jpg, image/jpeg"
-                                        type="file" id="fileInput" />
+                                        type="file" id="fileInput" multiple />
                                     </div>
                                     <h6 class="mt-1 text-gray-300 text-[0.6rem]">Supports : JPEG , JPG, PNG</h6>
                                 </div>
@@ -140,7 +143,8 @@
                                                 <span>Physical : </span>
                                                 <input  id="RangePlayerPhysical" type="range" min="10" max="99" value="10">
                                             </div>
-                                            <button type="submit" onclick="AddPlayer(event)" class="bottom-0 flex justify-normal items-center right-0 h-14 w-14 text-sm py-1 rounded-full text-white bg-[#6158CA] >
+                                            <button type="submit" onclick="AddPlayer(event)" 
+                                                class="absolute right-0 flex justify-center items-center h-11 w-11 text-sm py-1 rounded-full text-white bg-[#6158CA]" >
                                                 <i class="fa-solid fa-floppy-disk"></i>
                                             </button>
                                         </div>
@@ -153,7 +157,8 @@
                             </div>
                             
                         </div>
-                    </form>
+                        
+                        </form>
                     
                 </div>
             </div>
@@ -165,6 +170,8 @@
     https://cdn.jsdelivr.net/npm/tom-select@2.4.1/dist/js/tom-select.complete.min.js
     "></script> 
     <script src="./Js/players.js"></script>
-
+    <script type="module">
+        import imglybackgroundRemovalNode from 'https://cdn.jsdelivr.net/npm/@imgly/background-removal-node@1.4.5/+esm'
+        </script>
 </body>
 </html>

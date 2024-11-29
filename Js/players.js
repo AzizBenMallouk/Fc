@@ -63,54 +63,55 @@ const updateRating = () => {
 rangeInput.addEventListener("input", updateRating);
 
 updateRating();
+let imageFile;
 
 function AddPlayer(event){
   event.preventDefault();
   const PlayerData = {
       id : AllPlayersLis.length +1 ,
-      name : document.getElementById("txtplayerName").value ,
-      photo : "none",
-      cover : document.querySelector("#CoverCombo").value ,
-      position : document.getElementById("ComboplayerPosition").value ,
-      nationality : "none" ,
-      flag : document.querySelector("#ClubCombo").value ,
-      club : document.querySelector("#ClubCombo").value ,
-      logo : document.querySelector("#FlagCombo").value ,
-      rating : document.getElementById("RangePlayerRating").value ,
-      pace : document.getElementById("RangePlayerPace").value ,
-      shooting : document.getElementById("RangePlayerShooting").value ,
-      passing : document.getElementById("RangePlayerPassing").value ,
-      dribbling : document.getElementById("RangePlayerDribbling").value ,
-      defending : document.getElementById("RangePlayerDefending").value , 
-      physical : document.getElementById("RangePlayerPhysical").value ,
+      name : document.getElementById("txtplayerName")?.value ,
+      photo : "",
+      cover : document.querySelector("#CoverCombo")?.value ,
+      position : document.getElementById("ComboplayerPosition")?.value ,
+      nationality : document.getElementById("FlagComboName")?.textContent ,
+      flag : document.getElementById("FlagComboImg")?.getAttribute('src') ,
+      club : document.getElementById("#ClubComboName")?.textContent ,
+      logo : document.querySelector("#ClubComboImg")?.getAttribute('src') ,
+      rating : document.getElementById("RangePlayerRating")?.value ,
+      pace : document.getElementById("RangePlayerPace")?.value ,
+      shooting : document.getElementById("RangePlayerShooting")?.value ,
+      passing : document.getElementById("RangePlayerPassing")?.value ,
+      dribbling : document.getElementById("RangePlayerDribbling")?.value ,
+      defending : document.getElementById("RangePlayerDefending")?.value , 
+      physical : document.getElementById("RangePlayerPhysical")?.value ,
   }
 
   if (imageFile) {
+    document.getElementById("panleform").style.opacity = '0.4' ;
+    document.getElementById("panleform").style.pointerEvents = 'none' ;
+    document.getElementById("progressloading").classList.remove('hidden');
     UploadImgOnImgBB(PlayerData);
 } else {
-    console.error("No image selected!");
     alert("Please select an image before adding the player.");
 }
 
 }
 
 
-let imageFile;
 const input = document.querySelector("#fileInput");
 input.addEventListener("change", (event) => {
     const file = event.target.files[0];
+    // console.log(event)
     if (file) {
         imageFile = file;   
-        console.log("File selected:", file.name);
-    } else {
-        console.error("No file selected.");
+        // console.log("File selected:", file.name);//ghir name
     }
 });
 
 async function UploadImgOnImgBB(PlayerData){
 
   const apiKey = "3831af7143a217e46e098a7018fb2522";
-  //We have to make in it the env  to make it more secure lmohim 9di o 3adi
+  //We have to make in it the env file to make it more secure lmohim 9di o 3adi
   const formData = new FormData();
 
   formData.append("image", imageFile);
@@ -126,15 +127,22 @@ async function UploadImgOnImgBB(PlayerData){
       }
 
       const data = await response.json();
-      console.log("Upload successful!", data);
-      PlayerData.photo = data;
-      AllPlayersLis.push(PlayerData)
+      PlayerData.photo = data.data.url;
+      AllPlayersLis.push(PlayerData);
+      AllPlayersLis.reverse()
       Display_All_Players(true);
+      console.log(AllPlayersLis)
+
+      document.getElementById("panleform").style.opacity = '1' ;
+      document.getElementById("panleform").style.pointerEvents = 'auto' ;
+      document.getElementById("progressloading").classList.add('hidden');
+
   } catch (error) {
       console.error("Error uploading image:", error);
       throw error;
   }
 
+  
 }
  function uploadToImgBB(imageFile) {
   
@@ -159,14 +167,14 @@ new TomSelect('#FlagCombo',{
   render: {
     option: function(item, escape) {
       return `<div class="custom-option grid grid-cols-[auto,1fr] gap-3 items-center">
-          <img class="h-4 w-4" src="${item.img}" >
-          <span>${item.name}</span>
+          <img  class="h-4 w-4" src="${item.img}" >
+          <span  >${item.name}</span>
         </div>`;
     },
     item: function(item, escape) {
       return `<div id="Flaginput" class="custom-option grid grid-cols-[auto,1fr] gap-3 items-center">
-          <img class="h-4 w-4" src="${item.img}" >
-          <span>${item.name}</span>
+          <img id="FlagComboImg" class="h-4 w-4" src="${item.img}" >
+          <span id="FlagComboName">${item.name}</span>
         </div>`;
     }
   },
@@ -197,8 +205,8 @@ new TomSelect('#ClubCombo',{
     },
     item: function(item, escape) {
       return `<div id="Flaginput" class="custom-option grid grid-cols-[auto,1fr] gap-3 items-center">
-          <img class="h-4 w-4" src="${item.img}" >
-          <span>${item.name}</span>
+          <img id="ClubComboImg" class="h-4 w-4" src="${item.img}" >
+          <span id="ClubComboName">${item.name}</span>
         </div>`;
     }
   },
@@ -237,38 +245,6 @@ new TomSelect('#CoverCombo',{
   },
 });
 
-new TomSelect('#CoverCombo',{
-  valueField: 'img',
-  labelField: 'name',
-  searchField: 'name',
-  // fetch remote data
-  load: function(query, callback) {
-
-    fetch('../Data/card.json')
-      .then(response => response.json())
-      .then(json => {
-        callback(json);
-      }).catch(()=>{
-        callback();
-      });
-
-  },
-  // custom rendering functions for options and items
-  render: {
-    option: function(item, escape) {
-      return `<div class="custom-option grid grid-cols-[auto,1fr] gap-3 items-center">
-          <img class="h-4 w-4" src="${item.img}" >
-          <span>${item.name}</span>
-        </div>`;
-    },
-    item: function(item, escape) {
-      return `<div id="Flaginput" class="custom-option grid grid-cols-[auto,1fr] gap-3 items-center">
-          <img class="h-4 w-4" src="${item.img}" >
-          <span>${item.name}</span>
-        </div>`;
-    }
-  },
-});
 
 
 

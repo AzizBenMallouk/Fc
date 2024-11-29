@@ -26,6 +26,7 @@ const formations = [
         { pn : 11 ,x: 530, y: 395 , post: 'ST' ,player : -1},
     ]
 ]
+
 const Subplayer =[
 ]
 let formationPicked = 0;
@@ -84,9 +85,7 @@ const DefaultPositions = () =>{
 
     });
 }
-
 DefaultPositions();
-
 let players = [];
 
 for (let index = 0; index <= 11 ; index++) {
@@ -298,13 +297,13 @@ function PickedPlayer(playerObject , pn ,id,isOnterain){
 function getPlayerInfo(playerObject){
     document.getElementById(`playerinfo`).innerHTML = 
     `
-        <div class="border-[#3C4053] rounded-md border-2 w-full py-5 px-6">
+        <div class="border-[#3C4053] rounded-md border-2 w-full py-3 px-6">
             <div class="flex justify-between">
             <h3 class=" text-gray-100">Player information</h3>
                 <i class="fa-solid fa-xmark text-white cursor-pointer" onclick="ClosePanlePlayersinfo()"></i>
             </div>
-            <div class="text-white text-xs grid grid-cols-[1fr,auto] gap-2">
-                <div class="flex flex-col gap-4 w-full ">
+            <div class="text-white text-xs grid grid-cols-[1fr,auto] mt-3 gap-2">
+                <div class="flex flex-col w-full ">
                     <div class="flex flex-col items-center">
                         <div class="flex gap-3">
                             <img class="w-16" src="${playerObject?.flag}" alt="" >
@@ -312,51 +311,75 @@ function getPlayerInfo(playerObject){
                         <h3 class="font-semibold">${playerObject?.nationality}</h3>
                     </div>
                     <div class="grid grid-cols-2 gap-2 justify-between p-2">
-                        <div class="flex flex-col gap-1">
-                            <p class="grid grid-cols-[1fr,auto]">
-                                <span>Position : </span> 
-                                <span class=" px-[2px] py-[2px]">${playerObject?.position}</span>
-                            </p>
-                            <p class="grid grid-cols-[1fr,auto]">
-                                <span>Rating : </span> 
-                                <span class="border-[2px] border-green-400 px-[2px] py-[2px]">${playerObject?.rating}</span>
-                            </p>
-                             <p class="grid grid-cols-[1fr,auto]">
-                                <span>Pace : </span> 
-                                <span class="border-[2px] border-green-400 px-[2px] py-[2px]">${playerObject?.pace}</span>
-                            </p>
-                            <p class="grid grid-cols-[1fr,auto]">
-                                <span>Shooting : </span> 
-                                <span class="border-[2px] border-green-400 px-[2px] py-[2px]">${playerObject?.shooting}</span>
-                            </p>
-                            <p class="grid grid-cols-[1fr,auto]">
-                                <span>Physical : </span> 
-                                <span class="border-[2px] border-green-400 px-[2px] py-[2px]">${playerObject?.physical}</span>
-                            </p>
-                        </div>
-                        <div class="flex flex-col gap-1">
-                        <p class="grid grid-cols-[1fr,auto]">
-                                <span>Club : </span> 
-                                <span class=" px-[2px] py-[2px]">${playerObject?.club}</span>
-                            </p>
-                            <p class="grid grid-cols-[1fr,auto]">
-                                <span>Passing : </span> 
-                                <span class="border-[2px] border-green-400 px-[2px] py-[2px]">${playerObject?.passing}</span>
-                            </p>
-                            <p class="grid grid-cols-[1fr,auto]">
-                                <span>Dribbling : </span> 
-                                <span class="border-[2px] border-green-400 px-[2px] py-[2px]">${playerObject?.dribbling}</span>
-                            </p>
-                            <p class="grid grid-cols-[1fr,auto]">
-                                <span>Defending : </span> 
-                                <span class="border-[2px] border-green-400 px-[2px] py-[2px]">${playerObject?.defending}</span>
-                            </p>
-                            
-                        </div>
+                                    <div class="flex flex-col gap-1">
+                                        <p class="grid grid-cols-[1fr]">
+                                            <span>Rating : </span> 
+                                            <div class="rounded-full  bg-gray-600 " >
+                                                <div class="rounded-full
+                                                 bg-${playerObject?.rating>=90 ? 'green-400' : playerObject?.rating>=60 ?'yellow-400' : 'red-400' } px-2 
+                                                 w-[${playerObject?.rating}%]">${playerObject?.rating}</div>
+                                            </div>
+                                            
+                                            </p>
+                                         <p class="grid grid-cols-[auto]">
+                                            <span>Pace : </span>
+                                            <div class="rounded-full  bg-gray-600 " >
+                                                <div class="rounded-full 
+                                                bg-${(playerObject?.pace ?? playerObject.diving)>=90 ? 'green-400' : (playerObject?.pace ?? playerObject.diving)>=60 ?'yellow-400' : 'red-400' }
+                                                px-2 
+                                                w-[${playerObject?.pace ?? playerObject.diving}%]">${playerObject?.pace ?? playerObject.diving}</div>
+                                            </div>
+                                            
+                                        </p>
+                                        <p class="grid grid-cols-[1fr]">
+                                            <span>Shooting : </span> 
+                                            <div class="rounded-full  bg-gray-600 " >
+                                                <div class="rounded-full 
+                                                bg-${(playerObject?.shooting ?? playerObject.handling)>=90 ? 'green-400' : (playerObject?.shooting ?? playerObject.handling)>=60 ?'yellow-400' : 'red-400' }
+                                                 px-2 w-[${playerObject?.shooting ?? playerObject.handling}%]">${playerObject?.shooting ?? playerObject.handling}</div>
+                                            </div>
+                                        </p>
+                                        <p class="grid grid-cols-[1fr]">
+                                            <span>Physical : </span> 
+                                             <div class="rounded-full  bg-gray-600 " >
+                                               <div class="rounded-full 
+                                                bg-${(playerObject?.physical ?? playerObject.kicking)>=90 ? 'green-400' : (playerObject?.physical ?? playerObject.kicking)>=60 ?'yellow-400' : 'red-400' }
+                                                px-2  w-[${playerObject?.physical ?? playerObject.kicking}%]">${playerObject?.physical ?? playerObject.kicking}</div>
+                                            </div>
+                                        </p>
+                                    </div>
+                                    <div class="flex flex-col gap-1">
+                                   
+                                        <p class="grid grid-cols-[1fr]">
+                                            <span>Passing : </span> 
+                                             <div class="rounded-full  bg-gray-600 " >
+                                                <div class="rounded-full 
+                                                bg-${(playerObject?.passing ?? playerObject.reflexes)>=90 ? 'green-400' : (playerObject?.passing ?? playerObject.reflexes)>=60 ?'yellow-400' : 'red-400' }
+                                                 px-2 w-[${playerObject?.passing ?? playerObject.reflexes}%]">${playerObject?.passing ?? playerObject.reflexes}</div>
+                                            </div>
+                                            </p>
+                                        <p class="grid grid-cols-[1fr]">
+                                            <span>Dribbling : </span> 
+                                             <div class="rounded-full  bg-gray-600 " >
+                                                <div class="rounded-full 
+                                                bg-${(playerObject?.dribbling ?? playerObject.speed)>=90 ? 'green-400' : (playerObject?.dribbling ?? playerObject.speed)>=60 ?'yellow-400' : 'red-400' }
+                                                px-2  w-[${playerObject?.dribbling ?? playerObject.speed}%]">${playerObject?.dribbling ?? playerObject.speed}</div>
+                                            </div>
+                                            </p>
+                                        <p class="grid grid-cols-[1fr]">
+                                            <span>Defending : </span> 
+                                            <div class="rounded-full  bg-gray-600 " >
+                                                <div class="rounded-full 
+                                                bg-${(playerObject?.defending ?? playerObject.positioning)>=90 ? 'green-400' : (playerObject?.defending ?? playerObject.positioning)>=60 ?'yellow-400' : 'red-400' }
+                                                 px-2 w-[${playerObject?.defending ?? playerObject.positioning}%]"  >${playerObject?.defending ?? playerObject.positioning}</div>
+                                            </div>    
+                                        </p>
+                                        
+                                    </div>
                         
                     </div>
                 </div>
-                <div class="grid gap-1">
+                <div class="flex flex-col items-center  gap-1">
                      <img class="w-28 border-2 border-gray-300 bg-[#3a357357] rounded-md" src="${playerObject?.photo}" alt="">
                      <h2 class="font-bold">${playerObject?.name}</h2>
                      <img class="w-10" src="${playerObject?.logo}" alt="" >

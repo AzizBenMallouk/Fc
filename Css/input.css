@@ -7,15 +7,24 @@ body{
   background-color: #060B27;
   height: 100dvh;
 }
+
+header{
+  top: 0;
+  left: 0;
+  right: 0;
+  backdrop-filter: blur(10px);
+  z-index: 100;
+}
+
 .lc{
     background: radial-gradient(ellipse 550px 550px at 0% 200px , #3a357357 , transparent);
-    position: absolute;
+    position: fixed;
     inset: 0;
     z-index: -1;
 }
 .rc{
     background: radial-gradient(ellipse 300px 200px at 100% 180px  , #3a357357 , transparent);
-    position: absolute;
+    position: fixed;
     inset: 0;
     z-index: -1;
 }

@@ -154,7 +154,7 @@
       "club": "Bayern Munich",
       "logo": "https://cdn.sofifa.net/meta/team/503/120.png",
       "rating": 89,
-      "pace": 70,
+            "pace": 70,
       "shooting": 75,
       "passing": 88,
       "dribbling": 84,
@@ -172,6 +172,8 @@
       "club": "Atletico Madrid",
       "logo": "https://cdn.sofifa.net/meta/team/7980/120.png",
       "rating": 91,
+
+
       "diving": 89,
       "handling": 90,
       "kicking": 78,

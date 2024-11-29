@@ -139,7 +139,7 @@ function OpenFormationMenu(){
 }
 function PickPlayer(pn,isOnterain){
     
-    fetch('../Data/players.json')
+    fetch('./Data/players.json')
     .then(res=>res.json())
     .then(data=> {
         // console.log(Array.from(formations[formationPicked][pn-1].post).slice(-2).join())

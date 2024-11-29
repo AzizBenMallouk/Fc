@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build-terain</title>
+    <link rel="stylesheet" href="./Css/input.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <header class="text-sm border-b-[1px] border-gray-600">
+        <div class="container grid grid-cols-[auto,1fr,auto] items-center py-4 px-3 text-gray-200">
+            <h2 class="text-[#6158CA]">AmineFC</h2>
+            <ul class="flex justify-center gap-6">
+                <li><a href="/">Home</a></li>
+                <li><a href="/builder.html">Build</a></li>
+                <li><a href="/players.html">Players</a></li>
+            </ul>
+            <div class="flex items-center gap-5">
+                <button class="text-[#6158CA]  bg-white rounded-md px-3 py-1">Login</button>
+                <button class="bg-[#6158CA]  rounded-md px-3 py-1">Sign Up</button>
+                <div
+                    class="bg-[#262244] rounded-full border-[1px] border-[#6158CA] flex justify-center items-center h-8 w-8">
+                    <i class="fa-regular fa-moon"></i>
+                </div>
+            </div>
+        </div>
+
+    </header>
+    <div class="lc"></div>
+    <div class="rc"></div>
+    <!-- <section>
+        <div class="container px-5">
+            <div class="text-gray-400 pt-6">
+                <p>Home > Builder</p>
+                <h3>EA FC 25 Tactics & Formations</h3>
+                <p>Build Custom Tactics & Formations</p>
+            </div>
+            <div class="flex">
+                <div class="relative">
+                
+                </div>
+            </div>
+        </div>
+    </section> -->
+    <section>
+        <div class="container">
+            <div class="grid grid-cols-[1fr,500px]">
+                <div class="h-full grid ">
+                    <div class="tt flex relative">
+                        <div class="terain"></div>
+                        <div id="canvas" class="absolute h-[731px] w-[892px]"></div>
+                    </div>
+                  
+                    <div class=" mt-2 ">
+                        <div class="border-b-[1px] border-gray-400 flex justify-end">
+                            <span id="subnumber" class="text-gray-400">0/5</span>
+                        </div>
+                        <div id="subpanel" class="flex flex-row-reverse">
+                            <div class="relative element" id="cardtoadd" style="transition: 0.5s;filter: none;"><img id="imgcover9" src="./Assets/image.png" class="h-40 " alt="">
+                                <div onclick="AddSubs()" class="absolute inset-0 flex justify-center items-center">
+                                    <div class="relative text-gray-400 text-2xl cursor-pointer">
+                                        <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                                    </div>    
+                                </div>
+                                
+                            
+                            <div class="absolute left-[18px] top-8 flex flex-col items-center">
+                                <h2 id="ratingtext9" class="m-0 p-0 font-bold text-ms"></h2>
+                                <span id="posttext9" class="text-[8px]"></span>
+                                <img id="imgflag9" class="w-5 " alt="">
+                            </div>
+                            <img id="imgplayer9" class="absolute left-10 w-16 top-6" alt="">
+                            <div class="absolute left-4 right-4 top-[88px]  text-[0.6rem] flex flex-col justify-center items-center text-center">
+                                <h2 class="font-bold" id="playername9"></h2>
+                                
+                                <div class="flex flex-col items-center">
+                                    <span id="playerclub9" class="text-[0.5rem]"></span>
+                                    <img id="imgclub9" class="w-4" alt="">
+                                </div>
+                                
+                            </div>
+                            
+                            </div>
+                        </div>
+
+                        
+                    </div>
+                </div>
+    
+                <div class="w-full flex flex-col gap-2 px-6 pt-16">
+                    <div id="formations" ipOpened="false"
+                        class="border-[#3C4053] rounded-md border-2 w-full py-5 px-10 transition-all">
+                        <div class="flex justify-between items-center" onclick="OpenFormationMenu()">
+                            <h3 class=" text-gray-100 select-none cursor-pointer">Formations</h3>
+                            <i id="formationicon"
+                                class="fa-solid fa-chevron-down text-white cursor-pointer transition-all"></i>
+                        </div>
+                        <div id="formationcontent"></div>
+                    </div>
+                    <div id="playerinfo" >
+                        
+                    </div>
+                    <div id="playerspanel" class="border-[#3C4053] rounded-md border-2 overflow-y-auto">
+                        
+                    </div>
+    
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    <div class="">
+        test
+    </div>
+    <footer>
+        footer
+    </footer>
+    <script src="./Js/builder.js"></script>
+    <script>
+
+    </script>
+    <script src="https://kit.fontawesome.com/ff84f079ef.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

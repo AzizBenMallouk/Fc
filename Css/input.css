@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body{
+  background-color: #060B27;
+  height: 100dvh;
+}
+.lc{
+    background: radial-gradient(ellipse 550px 550px at 0% 200px , #3a357357 , transparent);
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+}
+.rc{
+    background: radial-gradient(ellipse 300px 200px at 100% 180px  , #3a357357 , transparent);
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+}
+
+.tt{
+  perspective: 1000px;
+  
+}
+@keyframes displayloading {
+  0%{
+    transform:
+    rotateX(0deg) ;
+  }
+  100%{
+    transform:
+    rotateX(40deg) ;
+  }
+}
+.terain {
+  width: 892px;
+  height: 731px;
+  opacity: 0.3;
+  filter: grayscale(1);
+  background-image: url('../Assets/1_NofXaUwXm5lzEAnPXjWY1w.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transform:
+   rotateX(40deg) ;
+  transition: transform 1s, opacity 0.5s; 
+  animation: displayloading 1s;
+}
+/* .terain:hover{
+  transform: rotateX(200deg) ;
+
+} */
+.containersplited{
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+.cardplayer:hover{
+  backdrop-filter: drop-shadow(4px 4px 10px blue);
+
+}
+
+@media (max-width: 1200px) {
+  /* .containersplited{
+    grid-template-columns: 1fr;
+    /* transform: scale(0.5); 
+  } */
+  /* .tt {
+    transform:
+    scale(0.5) ;
+  } */
+}
+
+@media (min-width: 768px) {
+    .container {
+      width: 738px;
+    }
+  
+  }
+  /* tablet */
+  @media (min-width: 992px) {
+    .container {
+      width: 970px;
+    }
+  
+  }
+  /* desktop */
+  @media (min-width: 1200px) {
+    .container {
+      width: 1170px;
+    }
+  }
+  
+  .container{
+    margin-inline: auto;
+}
+
+.custom-option img {
+  border-radius: 50%;
+}
+.custom-option span {
+  font-size: 12px;
+}
+
+
+.progress {
+  animation: progress .5s infinite linear;
+}
+
+.left-right {
+    transform-origin: 0% 50%;
+}
+    @keyframes progress {
+    0% {
+        transform:  translateX(0) scaleX(0);
+    }
+    40% {
+        transform:  translateX(0) scaleX(0.4);
+    }
+    100% {
+        transform:  translateX(100%) scaleX(0.5);
+    }
+}
